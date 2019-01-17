@@ -4,6 +4,10 @@ A plugin for [Flutter](https://flutter.io) that supports rendering surveys using
 
 *Note*: This plugin is in beta, and may still have a few issues and missing APIs.
 
+<br/>
+<img style="margin:auto;  width:230px; display: block;" src="https://storage.googleapis.com/pollfish_production/multimedia/basic-format.gif"/>
+<br/>
+
 ## Initializing the plugin
 
 The Pollfish plugin must be initialized with a Pollfish API Key. You can retrieve an API key from Pollfish Dashboard when you [sign up](https://www.pollfish.com/signup/publisher) and create a new app.
@@ -191,6 +195,7 @@ This is just an initial version of the plugin. There are still some
 limitations:
 
 - You cannot pass custom attributes during initialization
+- No tests implemented yet
 - Minimum iOS is 9.0 and minimum Android version is 17
 
 For other Pollfish products, see
@@ -199,4 +204,8 @@ For other Pollfish products, see
 
 ## Getting Started
 
-See the example directory for a complete sample app using Pollfish
+If you would like to implement the Rewarded approach or just review an example in code, you can review the example app on [Github](https://github.com/pollfish/flutter-plugin-pollfish).
+
+<br/>
+<img style="margin:auto;  width:230px; display: block;" src="https://storage.googleapis.com/pollfish_production/doc_images/flutter_example.gif"/>
+<br/>
