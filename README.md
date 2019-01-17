@@ -12,21 +12,7 @@ The Pollfish plugin must be initialized with a Pollfish API Key. You can retriev
 FlutterPollfish.instance.init(apiKey: 'YOUR_API_KEY')
 ```
 
-During initialization you can pass different optional params:
-
-- pollfishPosition: int - TOP_LEFT=0 , BOTTOM_LEFT=1, TOP_RIGHT=2, BOTTOM_RIGHT=3, MIDDLE_LEFT=4, MIDDLE_RIGHT=5 (defines the side of Pollish panel, and position o Pollish indicator)
-- indPadding: int - Sets padding (in dp) from top or bottom according to Position of the indicator
-- debugMode: bool - Sets Pollfish SDK to Developer or Release mode. Use Developer mode to test your implementation with demo surveys
-- customMode: bool - Initializes Pollfish in custom mode (used or implementing a Rewarded approach)
-- requestUUID: String - Sets a unique id to identify a user and be passed through server-to-server callbacks
-
-For example:
-
-```dart
-FlutterPollfish.instance.init('YOUR_API_KEY', pollfishPosition: 1, indPadding: 50 ,debugMode :debugMode, false , 'USER_ID');
-```
-
-### Other Init functions (optional)
+### Other Init params (optional)
 
 During initialization you can pass different optional params:
 
