@@ -30,6 +30,42 @@ For example:
 FlutterPollfish.instance.init('YOUR_API_KEY', pollfishPosition: 1, indPadding: 50 ,debugMode :debugMode, false , 'USER_ID');
 ```
 
+### Other Init functions (optional)
+
+During initialization you can pass different optional params:
+
+1. **pollfishPosition**: int - TOP_LEFT=0 , BOTTOM_LEFT=1, TOP_RIGHT=2, BOTTOM_RIGHT=3, MIDDLE_LEFT=4, MIDDLE_RIGHT=5 (defines the side of the Pollish panel, and position of Pollish indicator)
+2. **indPadding**: int - Sets padding (in dp) from the top or bottom according to Position of the indicator
+3. **debugMode**: bool - Sets Pollfish SDK to Debug or Release mode. Use Developer mode to test your implementation with demo surveys
+4. **customMode**: bool - Initializes Pollfish in custom mode (used when implementing a Rewarded approach)
+5. **requestUUID**: String - Sets a unique id to identify a user. This param will be passed backthrough server-to-server callbacks
+
+#### Debug Vs Release Mode
+
+You can use Pollfish either in Debug or in Release mode. 
+  
+* **Debug mode** is used to show to the developer how Pollfish will be shown through an app (useful during development and testing).
+* **Release mode** is the mode to be used for a released app (start receiving paid surveys).
+
+
+#### init Vs custom init
+
+*	**custom mode = false** is the standard way of using Pollfish in your apps. Using init function with custom mode disabled, enables controlling the behavior of Pollfish in an app from Pollfish panel.
+
+*	**custom mode = true** ignores Pollfish behavior from Pollfish panel. It always skips showing Pollfish indicator (small Pollfish icon) and always force open Pollfish view to app users. This method is usually used when app developers want to incentivize first somehow their users before completing surveys to increase completion rates.
+
+For example:
+
+```
+FlutterPollfish.instance.init(
+     apiKey: 'YOUR_API_KEY',
+     pollfishPosition: 5,
+     indPadding: 40,
+     customMode: false,
+     debugMode: true,
+     requestUUID: 'USER_INTERNAL_ID');
+```
+
 ## Manually showing or hiding Pollfish panel
 
 During the lifetime of a survey, publisher can manually show or hide survey panel by calling the following functions.
