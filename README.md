@@ -137,11 +137,11 @@ A notification that informs that Pollfish Survey panel closed
 
 
 ```dart
-FlutterPollfish.instance.setPollfishSurveyClosedSurveyListener(onPollfishSurveyClosed);
+FlutterPollfish.instance.setPollfishSurveyClosedListener(onPollfishSurveyClosed);
 
 void onPollfishSurveyClosed() => setState(() {
 
-   String _logText = 'Survey Panel Open';
+   String _logText = 'Survey Panel Closed';
 }
 
 ```
