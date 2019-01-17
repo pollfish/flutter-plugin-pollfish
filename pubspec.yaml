@@ -1,0 +1,19 @@
+name: flutter_pollfish
+description: A Flutter plugin for rendering Pollfish surveys within an app
+version: 0.1.2
+author: Pollish, Inc. <support@pollish.com>
+homepage: https://www.pollfish.com/publisher
+
+
+environment:
+  sdk: ">=2.0.0-dev.68.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+flutter:
+
+  plugin:
+    androidPackage: com.pollfish.flutterpollfish
+    pluginClass: FlutterPollfishPlugin
