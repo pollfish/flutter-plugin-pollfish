@@ -194,17 +194,7 @@ void onPollfishUserNotEligible() => setState(() {
 
 ## Following the rewarded approach
 
-An example is provided to demonstrate how a publisher can implement a rewarded approach. Publisher has to initialize Pollish in custom mode = true and immediately after the the init function to call Pollish hide. When a survey is received publisher can show a custom prompt to incentivize user to participate to the survey. If the user clicks on the prompt the publisher can call Pollish show. On survey complete, publisher can reward the user.
-
-
-
-## AndroidManifest changes
-
-Pollfish requires the INTERNET permission in order to work
-
-```
- <uses-permission android:name="android.permission.INTERNET"/>
-```
+An example is provided on [Github](https://github.com/pollfish/flutter-plugin-pollfish) that demonstrates how a publisher can implement the rewarded approach. Publisher has to initialize Pollish in custom mode = true and immediately after the the init function to call Pollish hide. When a survey is received, the publisher can show a custom prompt, to incentivize user to participate to the survey. If the user clicks on the prompt, the publisher can call Pollish show to show the questioanniare. Upon survey completion, the publisher can reward the user.
 
 
 ## Limitations / Minimum Requirements
@@ -222,8 +212,5 @@ For other Pollfish products, see
 
 ## Getting Started
 
-If you would like to implement the Rewarded approach or just review an example in code, you can review the example app on [Github](https://github.com/pollfish/flutter-plugin-pollfish).
+If you would like to review an example in code please review the [Github project](https://github.com/pollfish/flutter-plugin-pollfish).
 
-<br/>
-<img style="margin:auto;  width:230px; display: block;" src="https://storage.googleapis.com/pollfish_production/doc_images/flutter_example.gif"/>
-<br/>
