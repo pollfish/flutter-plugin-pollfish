@@ -1,7 +1,7 @@
 #import "FlutterPollfishPlugin.h"
 #import <Pollfish/Pollfish.h>
 
-FlutterMethodChannel *_channel;
+FlutterMethodChannel *_channel_pollfish;
 
 @implementation FlutterPollfishPlugin
 
@@ -35,13 +35,13 @@ FlutterMethodChannel *_channel;
 }
 
 + (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar>*)registrar {
-    _channel = [FlutterMethodChannel
+    _channel_pollfish = [FlutterMethodChannel
                                      methodChannelWithName:@"flutter_pollfish"
                                      binaryMessenger:[registrar messenger]];
     
  
     FlutterPollfishPlugin* instance = [[FlutterPollfishPlugin alloc] init];
-    [registrar addMethodCallDelegate:instance channel:_channel];
+    [registrar addMethodCallDelegate:instance channel:_channel_pollfish];
 }
 
 - (void)handleMethodCall:(FlutterMethodCall*)call result:(FlutterResult)result {
@@ -116,17 +116,17 @@ FlutterMethodChannel *_channel;
 
     const char *surveyInfo = [[NSString stringWithFormat:@"%d,%d,%d,%@",surveyCPA, surveyIR, surveyLOI, surveyClass] UTF8String];
 
-    [_channel invokeMethod:@"pollfishSurveyCompleted" arguments:[NSString stringWithFormat:@"%s",surveyInfo]];
+    [_channel_pollfish invokeMethod:@"pollfishSurveyCompleted" arguments:[NSString stringWithFormat:@"%s",surveyInfo]];
 }
 
 + (void)surveyOpened:(NSNotification *)notification
 {
-     [_channel invokeMethod:@"pollfishSurveyOpened" arguments:nil];
+     [_channel_pollfish invokeMethod:@"pollfishSurveyOpened" arguments:nil];
 }
 
 + (void)surveyClosed:(NSNotification *)notification
 {
-    [_channel invokeMethod:@"pollfishSurveyClosedSurvey" arguments:nil];
+    [_channel_pollfish invokeMethod:@"pollfishSurveyClosedSurvey" arguments:nil];
 }
 
 + (void)surveyReceived:(NSNotification *)notification
@@ -140,22 +140,22 @@ FlutterMethodChannel *_channel;
 
     const char *surveyInfo = [[NSString stringWithFormat:@"%d,%d,%d,%@",surveyCPA, surveyIR, surveyLOI, surveyClass] UTF8String];
 
-    [_channel invokeMethod:@"pollfishSurveyReceived" arguments:[NSString stringWithFormat:@"%s",surveyInfo]];
+    [_channel_pollfish invokeMethod:@"pollfishSurveyReceived" arguments:[NSString stringWithFormat:@"%s",surveyInfo]];
 }
 
 + (void)userNotEligible:(NSNotification *)notification
 {
-    [_channel invokeMethod:@"pollfishUserNotEligible" arguments:nil];
+    [_channel_pollfish invokeMethod:@"pollfishUserNotEligible" arguments:nil];
 }
 
 + (void)userRejectedSurvey:(NSNotification *)notification
 {
-    [_channel invokeMethod:@"pollfishUserRejectedSurvey" arguments:nil];
+    [_channel_pollfish invokeMethod:@"pollfishUserRejectedSurvey" arguments:nil];
 }
 
 + (void)surveyNotAvailable:(NSNotification *)notification
 {
-    [_channel invokeMethod:@"pollfishSurveyNotAvailable" arguments:nil];
+    [_channel_pollfish invokeMethod:@"pollfishSurveyNotAvailable" arguments:nil];
 }
 
 
