@@ -22,10 +22,10 @@ rootProject.allprojects {
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 28
 
     defaultConfig {
-        minSdkVersion 17
+        minSdkVersion 16
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     lintOptions {
@@ -35,6 +35,6 @@ android {
     dependencies {
         api 'com.google.android.gms:play-services-ads-identifier:16.0.0'
         api 'com.google.android.gms:play-services-base:16.0.1'
-        api 'com.pollfish:pollfish:+:googleplayRelease@aar'
+        api 'com.pollfish:pollfish:5.0.0:googleplayRelease@aar'
     }
 }

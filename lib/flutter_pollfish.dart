@@ -38,8 +38,9 @@ class FlutterPollfish {
       {String apiKey,
       int pollfishPosition,
       int indPadding,
-      bool debugMode,
-      bool customMode,
+      bool rewardMode,
+        bool releaseMode,
+        bool offerwallMode,
       String requestUUID}) async {
     assert(apiKey != null && apiKey.isNotEmpty);
 
@@ -49,8 +50,9 @@ class FlutterPollfish {
       'api_key': apiKey,
       'pollfishPosition': pollfishPosition,
       'indPadding': indPadding,
-      'debugMode': debugMode,
-      'customMode': customMode,
+      'rewardMode': rewardMode,
+      'releaseMode': releaseMode,
+      'offerwallMode': offerwallMode,
       'request_uuid': requestUUID,
     });
   }

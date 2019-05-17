@@ -9,3 +9,8 @@
 ## 0.1.2
 
 * Updating Readme
+
+## 0.2.0
+
+* Updated with SDKs v5.0.0
+* Added support for Offerwall

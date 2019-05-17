@@ -20,8 +20,8 @@ FlutterMethodChannel *_channel_pollfish;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(surveyClosed:)
                                                  name:@"PollfishClosed" object:nil];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(surveyReceived:)
-                                                 name:@"PollfishSurveyReceived" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(surveyReceived:) name:@"PollfishSurveyReceived" object:nil];
+
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(surveyNotAvailable:)
                                                  name:@"PollfishSurveyNotAvailable" object:nil];
@@ -72,35 +72,55 @@ FlutterMethodChannel *_channel_pollfish;
         
     }
 
-    int pollfishPosition=0;
-    int indPadding =50;
-    bool debugMode=true;
-    bool customMode = false;
-    NSString *request_uuid = nil;
+    __block  int pollfishPosition=0;
+    __block int indPadding =50;
+   __block  BOOL rewardMode=false;
+   __block  BOOL releaseMode = false;
+    __block BOOL offerwallMode = false;
+    __block NSString *request_uuid = nil;
+
     
     if (call.arguments[@"pollfishPosition"] != nil) {
-        
-        pollfishPosition = (int) call.arguments[@"pollfishPosition"];
+        pollfishPosition = (int) [call.arguments[@"pollfishPosition"]integerValue];
     }
     if (call.arguments[@"indPadding"] != nil) {
-        indPadding  = (int) call.arguments[@"indPadding"];
+        indPadding  = (int) [call.arguments[@"indPadding"] integerValue];
     }
-    if (call.arguments[@"debugMode"] != nil) {
-        debugMode = (bool) call.arguments[@"debugMode"];
+    if (call.arguments[@"releaseMode"] != nil) {
+        releaseMode = (BOOL) [call.arguments [@"releaseMode"] boolValue];
     }
-    if (call.arguments[@"customMode"] != nil) {
-        customMode = call.arguments[@"customMode"];
+    if (call.arguments[@"rewardMode"] != nil) {
+        NSLog(@"rewardMode is: %@", call.arguments[@"rewardMode"]);
+        rewardMode = (BOOL)[call.arguments[@"rewardMode"] boolValue];
+           NSLog(@"rewardMode is: %d",rewardMode);
     }
     if (call.arguments[@"request_uuid"] != nil) {
         request_uuid = call.arguments[@"request_uuid"];
     }
-    
-    [Pollfish initAtPosition:pollfishPosition
-                 withPadding: indPadding
-             andDeveloperKey: api_key
-               andDebuggable: debugMode
-               andCustomMode: customMode
-              andRequestUUID: request_uuid];
+    if (call.arguments[@"offerwallMode"] != nil) {
+        offerwallMode = (BOOL)[call.arguments[@"offerwallMode"]boolValue];
+    }
+
+
+    PollfishParams *pollfishParams =  [PollfishParams initWith:^(PollfishParams *pollfishParams) {
+        
+        NSLog(@"pollfishPosition is: %d", pollfishPosition);
+        NSLog(@"indicatorPadding is: %d", indPadding);
+        NSLog(@"releaseMode is: %d", releaseMode);
+        NSLog(@"offerwallMode is: %d", offerwallMode);
+        NSLog(@"rewardMode is: %d", rewardMode);
+        
+        
+        pollfishParams.indicatorPosition=pollfishPosition;
+        pollfishParams.indicatorPadding=indPadding;
+        pollfishParams.releaseMode= releaseMode;
+        pollfishParams.offerwallMode= offerwallMode;
+        pollfishParams.rewardMode=rewardMode;
+        pollfishParams.requestUUID=request_uuid;
+    }];
+
+  
+    [Pollfish initWithAPIKey:api_key andParams:pollfishParams];
 }
 
 
@@ -113,9 +133,12 @@ FlutterMethodChannel *_channel_pollfish;
     int surveyLOI = [[[notification userInfo] valueForKey:@"survey_loi"] intValue];
 
     NSString *surveyClass =(NSString *) [[notification userInfo] valueForKey:@"survey_class"];
-
-    const char *surveyInfo = [[NSString stringWithFormat:@"%d,%d,%d,%@",surveyCPA, surveyIR, surveyLOI, surveyClass] UTF8String];
-
+    
+    NSString *rewardName =(NSString *) [[notification userInfo] valueForKey:@"reward_name"];
+    int rewardValue = [[[notification userInfo] valueForKey:@"reward_value"] intValue];
+    
+      const char *surveyInfo = [[NSString stringWithFormat:@"%d,%d,%d,%@,%@,%d",surveyCPA, surveyIR, surveyLOI, surveyClass, rewardName, rewardValue] UTF8String];
+    
     [_channel_pollfish invokeMethod:@"pollfishSurveyCompleted" arguments:[NSString stringWithFormat:@"%s",surveyInfo]];
 }
 
@@ -132,15 +155,25 @@ FlutterMethodChannel *_channel_pollfish;
 + (void)surveyReceived:(NSNotification *)notification
 {
 
-    int surveyCPA = [[[notification userInfo] valueForKey:@"survey_cpa"] intValue];
-    int surveyIR = [[[notification userInfo] valueForKey:@"survey_ir"] intValue];
-    int surveyLOI = [[[notification userInfo] valueForKey:@"survey_loi"] intValue];
+    if([notification userInfo]!=nil){
+    
+        int surveyCPA = [[[notification userInfo] valueForKey:@"survey_cpa"] intValue];
+        int surveyIR = [[[notification userInfo] valueForKey:@"survey_ir"] intValue];
+        int surveyLOI = [[[notification userInfo] valueForKey:@"survey_loi"] intValue];
 
-    NSString *surveyClass =(NSString *) [[notification userInfo] valueForKey:@"survey_class"];
+        NSString *surveyClass =(NSString *) [[notification userInfo] valueForKey:@"survey_class"];
 
-    const char *surveyInfo = [[NSString stringWithFormat:@"%d,%d,%d,%@",surveyCPA, surveyIR, surveyLOI, surveyClass] UTF8String];
+        NSString *rewardName =(NSString *) [[notification userInfo] valueForKey:@"reward_name"];
+        int rewardValue = [[[notification userInfo] valueForKey:@"reward_value"] intValue];
+    
+        const char *surveyInfo = [[NSString stringWithFormat:@"%d,%d,%d,%@,%@,%d",surveyCPA, surveyIR, surveyLOI, surveyClass, rewardName, rewardValue] UTF8String];
 
-    [_channel_pollfish invokeMethod:@"pollfishSurveyReceived" arguments:[NSString stringWithFormat:@"%s",surveyInfo]];
+        [_channel_pollfish invokeMethod:@"pollfishSurveyReceived" arguments:[NSString stringWithFormat:@"%s",surveyInfo]];
+
+    }else{
+       
+        [_channel_pollfish invokeMethod:@"pollfishSurveyReceived" arguments:@""];
+    }
 }
 
 + (void)userNotEligible:(NSNotification *)notification

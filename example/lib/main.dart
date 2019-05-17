@@ -8,7 +8,7 @@ void main() => runApp(MyApp());
 //Pollfish initialization options
 
 const String apiKey = '2ae349ab-30b8-4100-bc4d-b33b82e76519';
-const bool debugMode = true;
+const bool rewardMode = true;
 const int indPadding = 20;
 const int pollfishPosition = 5;
 const String requestUUID = null;
@@ -23,7 +23,8 @@ class _MyAppState extends State<MyApp> {
 
   bool _showButton = false;
   bool _completedSurvey = false;
-  bool _customMode = false;
+  bool _rewardMode = false;
+  bool _releaseMode = false;
   int _currentIndex = 0;
   int _cpa = 0;
 
@@ -43,13 +44,10 @@ class _MyAppState extends State<MyApp> {
         apiKey: apiKey,
         pollfishPosition: pollfishPosition,
         indPadding: indPadding,
-        customMode: _customMode,
-        debugMode: debugMode,
+        rewardMode: _rewardMode,
+        releaseMode: _releaseMode,
+        offerwallMode: (_currentIndex ==2)?true:false,
         requestUUID: requestUUID);
-
-    if (_customMode) {
-      FlutterPollfish.instance.hide();
-    }
 
     FlutterPollfish.instance
         .setPollfishReceivedSurveyListener(onPollfishSurveyReveived);
@@ -74,125 +72,159 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
+        home: Scaffold(
           appBar: AppBar(
-            title: _currentIndex % 2 == 0
-                ? const Text('Pollfish Standard Integration')
-                : const Text('Pollfish Rewarded Integration'),
-          ),
-          body: Center(
-              child: new Container(
-                  padding: new EdgeInsets.all(20.0),
-                  child: new Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        //Padding between these please
-                        Text('$_logText\n'),
-                        (_currentIndex % 2 == 1 &&
-                                _showButton &&
-                                !_completedSurvey)
-                            ? new RawMaterialButton(
-                                onPressed: () {
-                                  FlutterPollfish.instance.show();
-                                },
-                                child: new Text(
-                                    'Complete a Survey and Earn $_cpa Credits',
-                                    style: new TextStyle(
-                                        color: Colors.white, fontSize: 16.0)),
-                                // You can add a Icon instead of text also, like below.
+              title:findCurrentTitle(_currentIndex),
+        ),
+        body: Center(
+            child: new Container(
+                padding: new EdgeInsets.all(20.0),
+                child: new Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      //Padding between these please
+                      Text('$_logText\n'),
+                      (((_currentIndex == 1)||(_currentIndex == 2)) &&
+                          _showButton &&
+                          !_completedSurvey)
+                          ? new RawMaterialButton(
+                        onPressed: () {
+                          FlutterPollfish.instance.show();
+                        },
+                        child: new Text(
+                            (_currentIndex == 1)?'Complete a Survey and Earn $_cpa Credits':'Offerwall - Take Surveys',
+                            style: new TextStyle(
+                                color: Colors.white, fontSize: 16.0)),
+                        // You can add a Icon instead of text also, like below.
 
-                                shape: new RoundedRectangleBorder(),
-                                elevation: 2.0,
-                                fillColor: Colors.blue,
-                                padding: const EdgeInsets.all(15.0),
-                              )
-                            : (_currentIndex % 2 == 1 &&
-                                    !_showButton &&
-                                    _completedSurvey)
-                                ? Container(
-                                    child: new Text('You earned $_cpa Credits'),
-                                  )
-                                : Container()
-                      ]))),
-          bottomNavigationBar: BottomNavigationBar(
-              onTap: onTabTapped,
-              // new
-              currentIndex: _currentIndex, // new
-              items: [
-                new BottomNavigationBarItem(
-                  icon: Icon(Icons.check),
-                  title: Text('Standard'),
-                ),
-                new BottomNavigationBarItem(
-                    icon: Icon(Icons.card_giftcard), title: Text('Rewarded'))
-              ])),
-    );
+                        shape: new RoundedRectangleBorder(),
+                        elevation: 2.0,
+                        fillColor: Colors.blue,
+                        padding: const EdgeInsets.all(15.0),
+                      )
+                          : (_currentIndex % 2 == 1 &&
+                          !_showButton &&
+                          _completedSurvey)
+                          ? Container(
+                        child: new Text('You earned $_cpa Credits'),
+                      )
+                          : Container()
+                    ]))),
+        bottomNavigationBar: BottomNavigationBar(
+            onTap: onTabTapped,
+            // new
+            currentIndex: _currentIndex, // new
+            items: [
+              new BottomNavigationBarItem(
+                icon: Icon(Icons.check),
+                title: Text('Standard'),
+              ), new BottomNavigationBarItem(
+                icon: Icon(Icons.card_giftcard),
+                title: Text('Rewarded Survey'),
+              ),
+              new BottomNavigationBarItem(
+                  icon: Icon(Icons.local_offer), title: Text('Offerwall'))
+            ])),);
   }
 
   void onTabTapped(int index) {
     setState(() {
       _currentIndex = index;
-      if (_currentIndex % 2 == 1) {
-        _customMode = true;
+      if (_currentIndex == 0) {
+        _rewardMode = false;
       } else {
-        _customMode = false;
+        _rewardMode = true;
       }
     });
     initPollfish();
   }
 
+  Text findCurrentTitle(int currentIndex){
+
+    if(_currentIndex == 0){
+      return const Text('Pollfish Standard Integration');
+    }else if(_currentIndex == 1){
+      return const Text('Pollfish Rewarded Integration');
+    }else{
+      return const Text('Pollfish Offerwall Integration');
+    }
+  }
+
   // Pollish notification functions
 
-  void onPollfishSurveyReveived(String result) => setState(() {
+  void onPollfishSurveyReveived(String result) =>
+      setState(() {
         List<String> surveyCharacteristics = result.split(',');
         if (surveyCharacteristics.length >= 4) {
           _logText =
-              'Survey Received: - SurveyInfo with CPA: ${surveyCharacteristics[0]} and IR: ${surveyCharacteristics[1]} and LOI: ${surveyCharacteristics[2]} and SurveyClass: ${surveyCharacteristics[3]}';
+          'Survey Received: - SurveyInfo with CPA: ${surveyCharacteristics[0]} and IR: ${surveyCharacteristics[1]} and LOI: ${surveyCharacteristics[2]} and SurveyClass: ${surveyCharacteristics[3]} and RewardName: ${surveyCharacteristics[4]}  and RewardValue: ${surveyCharacteristics[5]}';
 
           var myInt = int.parse(surveyCharacteristics[0]);
           assert(myInt is int);
 
-          _completedSurvey = false;
-          _showButton = true;
 
           _cpa = myInt;
+
+        }else{
+          _logText = 'Offerwall Ready'; // Offerwall
         }
+
+        _completedSurvey = false;
+        _showButton = true;
+
       });
 
-  void onPollfishSurveyCompleted(String result) => setState(() {
+  void onPollfishSurveyCompleted(String result) =>
+      setState(() {
         List<String> surveyCharacteristics = result.split(',');
         if (surveyCharacteristics.length >= 4) {
           _logText =
-              'Survey Completed: - SurveyInfo with CPA: ${surveyCharacteristics[0]} and IR: ${surveyCharacteristics[1]} and LOI: ${surveyCharacteristics[2]} and SurveyClass: ${surveyCharacteristics[3]}';
+          'Survey Completed: - SurveyInfo with CPA: ${surveyCharacteristics[0]} and IR: ${surveyCharacteristics[1]} and LOI: ${surveyCharacteristics[2]} and SurveyClass: ${surveyCharacteristics[3]} and RewardName: ${surveyCharacteristics[4]}  and RewardValue: ${surveyCharacteristics[5]}';
+        }
+
+        if(_currentIndex == 1) { // Rewarded Survey - Do not hide on Offerwall
           _showButton = false;
           _completedSurvey = true;
         }
       });
 
-  void onPollfishSurveyOpened() => setState(() {
+  void onPollfishSurveyOpened() =>
+      setState(() {
         _logText = 'Survey Panel Open';
       });
 
-  void onPollfishSurveyClosed() => setState(() {
+  void onPollfishSurveyClosed() =>
+      setState(() {
         _logText = 'Survey Panel Closed';
       });
 
-  void onPollfishSurveyNotAvailable() => setState(() {
+  void onPollfishSurveyNotAvailable() =>
+      setState(() {
         _logText = 'Survey Not Available';
+
         _showButton = false;
         _completedSurvey = false;
       });
 
-  void onPollfishUserRejectedSurvey() => setState(() {
+  void onPollfishUserRejectedSurvey() =>
+      setState(() {
         _logText = 'User Rejected Survey';
-        _showButton = false;
-        _completedSurvey = false;
+
+
+        if(_currentIndex == 1) {// Rewarded Survey - Do not hide on Offerwall
+          _showButton = false;
+          _completedSurvey = false;
+        }
       });
 
-  void onPollfishUserNotEligible() => setState(() {
+  void onPollfishUserNotEligible() =>
+      setState(() {
         _logText = 'User Not Eligible';
-        _showButton = false;
-        _completedSurvey = false;
+
+        if(_currentIndex == 1) {// Rewarded Survey - Do not hide on Offerwall
+          _showButton = false;
+          _completedSurvey = false;
+        }
       });
 }

@@ -16,9 +16,7 @@ import com.pollfish.interfaces.PollfishClosedListener;
 import com.pollfish.interfaces.PollfishCompletedSurveyListener;
 import com.pollfish.interfaces.PollfishOpenedListener;
 import com.pollfish.interfaces.PollfishReceivedSurveyListener;
-import com.pollfish.interfaces.PollfishSurveyCompletedListener;
 import com.pollfish.interfaces.PollfishSurveyNotAvailableListener;
-import com.pollfish.interfaces.PollfishSurveyReceivedListener;
 import com.pollfish.interfaces.PollfishUserNotEligibleListener;
 import com.pollfish.interfaces.PollfishUserRejectedSurveyListener;
 import com.pollfish.main.PollFish;
@@ -53,8 +51,9 @@ public class FlutterPollfishPlugin implements MethodCallHandler {
 
 
     private void initPollfish(final Activity activity, final String apiKey, final int p,
-                              final int indPadding, final boolean devMode,
-                              final boolean customMode, final String request_uuid) {
+                              final int indPadding, final boolean releaseMode,
+                              final boolean rewardMode,
+                              final boolean offerwallMode, final String request_uuid) {
 
         String requestUUIDtemp = null;
 
@@ -70,9 +69,19 @@ public class FlutterPollfishPlugin implements MethodCallHandler {
 
             @Override
             public void onPollfishSurveyReceived(SurveyInfo surveyInfo) {
-                Log.d(TAG, "onPollfishSurveyReceived (CPA: " + surveyInfo.getSurveyCPA() + ", IR: " + String.valueOf(surveyInfo.getSurveyIR()) + ", LOI: " + String.valueOf(surveyInfo.getSurveyLOI()) + ", SurveyClass: " + String.valueOf(surveyInfo.getSurveyClass()) + ")");
 
-                channel.invokeMethod("pollfishSurveyReceived", String.valueOf(surveyInfo.getSurveyCPA()) + "," + String.valueOf(surveyInfo.getSurveyIR()) + "," + String.valueOf(surveyInfo.getSurveyLOI()) + "," + String.valueOf(surveyInfo.getSurveyClass()));
+                if(surveyInfo!=null){
+
+                Log.d(TAG, "onPollfishSurveyReceived (CPA: " + surveyInfo.getSurveyCPA() + ", IR: " + String.valueOf(surveyInfo.getSurveyIR()) + ", LOI: " + String.valueOf(surveyInfo.getSurveyLOI()) + ", SurveyClass: " + String.valueOf(surveyInfo.getSurveyClass())  + ", RewardName: " + String.valueOf(surveyInfo.getRewardName())  + ", RewardValue: " + String.valueOf(surveyInfo.getRewardValue())+ ")");
+
+                channel.invokeMethod("pollfishSurveyReceived", String.valueOf(surveyInfo.getSurveyCPA()) + "," + String.valueOf(surveyInfo.getSurveyIR()) + "," + String.valueOf(surveyInfo.getSurveyLOI()) + "," + String.valueOf(surveyInfo.getSurveyClass()  + "," + String.valueOf(surveyInfo.getRewardName())  + "," + String.valueOf(surveyInfo.getRewardValue())));
+
+                }else{
+
+                    Log.d(TAG, "onPollfishSurveyReceived");
+
+                    channel.invokeMethod("pollfishSurveyReceived", "");
+                }
             }
         };
 
@@ -80,9 +89,21 @@ public class FlutterPollfishPlugin implements MethodCallHandler {
 
             @Override
             public void onPollfishSurveyCompleted(SurveyInfo surveyInfo) {
-                Log.d(TAG, "onPollfishSurveyCompleted (CPA: " + surveyInfo.getSurveyCPA() + ", IR: " + String.valueOf(surveyInfo.getSurveyIR()) + ", LOI: " + String.valueOf(surveyInfo.getSurveyLOI()) + ", SurveyClass: " + String.valueOf(surveyInfo.getSurveyClass()) + ")");
 
-                channel.invokeMethod("pollfishSurveyCompleted", String.valueOf(surveyInfo.getSurveyCPA()) + "," + String.valueOf(surveyInfo.getSurveyIR()) + "," + String.valueOf(surveyInfo.getSurveyLOI()) + "," + String.valueOf(surveyInfo.getSurveyClass()));
+                if(surveyInfo!=null){
+
+                    Log.d(TAG, "onPollfishSurveyCompleted (CPA: " + surveyInfo.getSurveyCPA() + ", IR: " + String.valueOf(surveyInfo.getSurveyIR()) + ", LOI: " + String.valueOf(surveyInfo.getSurveyLOI()) + ", SurveyClass: " + String.valueOf(surveyInfo.getSurveyClass())  + ", RewardName: " + String.valueOf(surveyInfo.getRewardName())  + ", RewardValue: " + String.valueOf(surveyInfo.getRewardValue())+ ")");
+
+                    channel.invokeMethod("pollfishSurveyCompleted", String.valueOf(surveyInfo.getSurveyCPA()) + "," + String.valueOf(surveyInfo.getSurveyIR()) + "," + String.valueOf(surveyInfo.getSurveyLOI()) + "," + String.valueOf(surveyInfo.getSurveyClass()  + "," + String.valueOf(surveyInfo.getRewardName())  + "," + String.valueOf(surveyInfo.getRewardValue())));
+
+                }else{
+
+                    Log.d(TAG, "onPollfishSurveyCompleted");
+
+                    channel.invokeMethod("pollfishSurveyCompleted", "");
+                }
+
+
             }
         };
 
@@ -150,8 +171,9 @@ public class FlutterPollfishPlugin implements MethodCallHandler {
                                 .pollfishOpenedListener(pollfishOpenedListener)
                                 .pollfishClosedListener(pollfishClosedListener)
                                 .requestUUID(requestUUID)
-                                .releaseMode(!devMode)
-                                .customMode(customMode)
+                                .releaseMode(releaseMode)
+                                .rewardMode(rewardMode)
+                                .offerWallMode(offerwallMode)
                                 .build());
             }
         });
@@ -174,8 +196,9 @@ public class FlutterPollfishPlugin implements MethodCallHandler {
 
         int pollfishPosition=0;
         int indPadding =50;
-        boolean debugMode=true;
-        boolean customMode = false;
+        boolean releaseMode= false;
+        boolean rewardMode = false;
+        boolean offerwallMode = false;
         String request_uuid = null;
 
         if (call.argument("pollfishPosition") != null) {
@@ -184,12 +207,16 @@ public class FlutterPollfishPlugin implements MethodCallHandler {
         if (call.argument("indPadding") != null) {
             indPadding = call.argument("indPadding");
         }
-        if (call.argument("debugMode") != null) {
-            debugMode = call.argument("debugMode");
+        if (call.argument("releaseMode") != null) {
+            releaseMode = call.argument("releaseMode");
         }
-        if (call.argument("customMode") != null) {
-            customMode = call.argument("customMode");
+        if (call.argument("rewardMode") != null) {
+            rewardMode = call.argument("rewardMode");
         }
+        if (call.argument("offerwallMode") != null) {
+            offerwallMode = call.argument("offerwallMode");
+        }
+
         if (call.argument("request_uuid") != null) {
             request_uuid = call.argument("request_uuid");
         }
@@ -197,11 +224,12 @@ public class FlutterPollfishPlugin implements MethodCallHandler {
         Log.d(TAG, "api_key: " + api_key);
         Log.d(TAG, "pollfishPosition: " + pollfishPosition);
         Log.d(TAG, "indPadding: " + indPadding);
-        Log.d(TAG, "debugMode: " + debugMode);
-        Log.d(TAG, "customMode: " + customMode);
+        Log.d(TAG, "releaseMode: " + releaseMode);
+        Log.d(TAG, "rewardMode: " + rewardMode);
+        Log.d(TAG, "offerwallMode: " + offerwallMode);
         Log.d(TAG, "request_uuid: " + request_uuid);
 
-        initPollfish(registrar.activity(), api_key, pollfishPosition, indPadding, debugMode, customMode, request_uuid);
+        initPollfish(registrar.activity(), api_key, pollfishPosition, indPadding, releaseMode, rewardMode,offerwallMode, request_uuid);
     }
 
     @Override
