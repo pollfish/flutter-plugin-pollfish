@@ -18,9 +18,10 @@ During initialization you can pass different optional params:
 
 1. **pollfishPosition**: int - TOP_LEFT=0 , BOTTOM_LEFT=1, TOP_RIGHT=2, BOTTOM_RIGHT=3, MIDDLE_LEFT=4, MIDDLE_RIGHT=5 (defines the side of the Pollish panel, and position of Pollish indicator)
 2. **indPadding**: int - Sets padding (in dp) from the top or bottom according to Position of the indicator
-3. **debugMode**: bool - Sets Pollfish SDK to Debug or Release mode. Use Developer mode to test your implementation with demo surveys
-4. **customMode**: bool - Initializes Pollfish in custom mode (used when implementing a Rewarded approach)
+3. **releaseMode**: bool - Sets Pollfish SDK to Debug or Release mode. Use Developer mode to test your implementation with demo surveys
+4. **rewardMode**: bool - Initializes Pollfish in reward mode (used when implementing a Rewarded approach)
 5. **requestUUID**: String - Sets a unique id to identify a user. This param will be passed backthrough server-to-server callbacks
+5. **offerwallMode**: bool - Sets Pollfish to Offerwall mode
 
 #### Debug Vs Release Mode
 
@@ -32,9 +33,9 @@ You can use Pollfish either in Debug or in Release mode.
 
 #### init Vs custom init
 
-*	**custom mode = false** is the standard way of using Pollfish in your apps. Using init function with custom mode disabled, enables controlling the behavior of Pollfish in an app from Pollfish panel.
+*	**rewardMode = false** is the standard way of using Pollfish in your apps. Using init function with reward mode disabled, enables controlling the behavior of Pollfish in an app from Pollfish panel.
 
-*	**custom mode = true** ignores Pollfish behavior from Pollfish panel. It always skips showing Pollfish indicator (small Pollfish icon) and always force open Pollfish view to app users. This method is usually used when app developers want to incentivize first somehow their users before completing surveys to increase completion rates.
+*	**rewardMode = true** ignores Pollfish behavior from Pollfish panel. It always skips showing Pollfish indicator (small Pollfish icon) and always force open Pollfish view to app users. This method is usually used when app developers want to incentivize first somehow their users, before completing surveys to increase completion rates.
 
 For example:
 
@@ -43,9 +44,10 @@ FlutterPollfish.instance.init(
      apiKey: 'YOUR_API_KEY',
      pollfishPosition: 5,
      indPadding: 40,
-     customMode: false,
-     debugMode: true,
-     requestUUID: 'USER_INTERNAL_ID');
+     rewardMode: false,
+     releaseMode: true,
+     requestUUID: 'USER_INTERNAL_ID',
+     offerwallMode:false);
 ```
 
 ## Manually showing or hiding Pollfish panel
@@ -74,7 +76,8 @@ Once a survey is received, Pollish Survey Received notification is fired to info
 - LOI: length of the survey is minutes
 - IR: incidence rate (conversion)
 - Survey Class: survey provider (Pollish, Toluna, Cint etc)
-
+- Reward Name: Reward name as specified on Pollfish Dashboard
+- Reward Value: Reward value based on exchange rate as specified on Pollfish Dashboard
 
 ```dart
 FlutterPollfish.instance.setPollfishReceivedSurveyListener(onPollfishSurveyReveived);
@@ -83,9 +86,10 @@ void onPollfishSurveyReveived(String result) => setState(() {
 
     List<String> surveyCharacteristics = result.split(',');
 
-     if (surveyCharacteristics.length >= 4) {
-       String _logText =
-              'Survey Received: - SurveyInfo with CPA: ${surveyCharacteristics[0]} and IR: ${surveyCharacteristics[1]} and LOI: ${surveyCharacteristics[2]} and SurveyClass: ${surveyCharacteristics[3]}';
+     if (surveyCharacteristics.length >= 6) {
+       String  _logText =
+          'Survey Received: - SurveyInfo with CPA: ${surveyCharacteristics[0]} and IR: ${surveyCharacteristics[1]} and LOI: ${surveyCharacteristics[2]} and SurveyClass: ${surveyCharacteristics[3]} and RewardName: ${surveyCharacteristics[4]}  and RewardValue: ${surveyCharacteristics[5]}';
+       
     }
  });
 
@@ -108,9 +112,10 @@ void onPollfishSurveyCompleted(String result) => setState(() {
 
     List<String> surveyCharacteristics = result.split(',');
 
-     if (surveyCharacteristics.length >= 4) {
-       String _logText =
-              'Survey Completed: - SurveyInfo with CPA: ${surveyCharacteristics[0]} and IR: ${surveyCharacteristics[1]} and LOI: ${surveyCharacteristics[2]} and SurveyClass: ${surveyCharacteristics[3]}';
+     if (surveyCharacteristics.length >= 6) {
+       String  _logText =
+          'Survey Completed: - SurveyInfo with CPA: ${surveyCharacteristics[0]} and IR: ${surveyCharacteristics[1]} and LOI: ${surveyCharacteristics[2]} and SurveyClass: ${surveyCharacteristics[3]} and RewardName: ${surveyCharacteristics[4]}  and RewardValue: ${surveyCharacteristics[5]}';
+       
     }
  });
 
@@ -192,9 +197,9 @@ void onPollfishUserNotEligible() => setState(() {
 ```
 
 
-## Following the rewarded approach
+## Following the rewarded and/or theOfferwall approach
 
-An example is provided on [Github](https://github.com/pollfish/flutter-plugin-pollfish) that demonstrates how a publisher can implement the rewarded approach. Publisher has to initialize Pollish in custom mode = true and immediately after the the init function to call Pollish hide. When a survey is received, the publisher can show a custom prompt, to incentivize user to participate to the survey. If the user clicks on the prompt, the publisher can call Pollish show to show the questioanniare. Upon survey completion, the publisher can reward the user.
+An example is provided on [Github](https://github.com/pollfish/flutter-plugin-pollfish) that demonstrates how a publisher can implement the rewarded and/or the Offerwall approach. Publisher has to initialize Pollish in reward mode = true and specify if Offerwall mode should be on. When a survey is received, the publisher can show a custom prompt, to incentivize user to participate to the survey. If the user clicks on the prompt, the publisher can call Pollish show to show the questioanniare. Upon survey completion, the publisher can reward the user.
 
 
 ## Limitations / Minimum Requirements
@@ -204,7 +209,7 @@ limitations:
 
 - You cannot pass custom attributes during initialization
 - No tests implemented yet
-- Minimum iOS is 9.0 and minimum Android version is 17
+- Minimum iOS is 9.0 and minimum Android version is 16
 
 For other Pollfish products, see
 [Pollfish docs](https://www.pollfish.com/docs).
