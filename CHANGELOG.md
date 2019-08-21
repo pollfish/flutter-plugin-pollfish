@@ -14,3 +14,7 @@
 
 * Updated with SDKs v5.0.0
 * Added support for Offerwall
+
+## 0.2.2
+
+* Fixed iOS bug with optional params not present during init

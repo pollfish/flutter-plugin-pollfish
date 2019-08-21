@@ -49,7 +49,7 @@ class FlutterPollfish {
     return _channel.invokeMethod("init", <String, dynamic>{
       'api_key': apiKey,
       'pollfishPosition': pollfishPosition,
-      'indPadding': indPadding,
+      'indPadding':  indPadding,
       'rewardMode': rewardMode,
       'releaseMode': releaseMode,
       'offerwallMode': offerwallMode,

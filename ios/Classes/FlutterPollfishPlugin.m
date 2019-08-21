@@ -64,7 +64,7 @@ FlutterMethodChannel *_channel_pollfish;
 
     NSString *api_key = (NSString *) call.arguments[@"api_key"];
     
-    if (api_key == nil || [api_key length] == 0) {
+    if (api_key == [NSNull null] || [api_key length] == 0) {
         result([FlutterError errorWithCode:@"no_api_key"
                                    message:@"a non-empty Pollfish API Key was not provided"
                                    details:nil]);
@@ -79,25 +79,27 @@ FlutterMethodChannel *_channel_pollfish;
     __block BOOL offerwallMode = false;
     __block NSString *request_uuid = nil;
 
+
+
     
-    if (call.arguments[@"pollfishPosition"] != nil) {
+    if (call.arguments[@"pollfishPosition"] != [NSNull null]) {
         pollfishPosition = (int) [call.arguments[@"pollfishPosition"]integerValue];
     }
-    if (call.arguments[@"indPadding"] != nil) {
+    if (call.arguments[@"indPadding"] != [NSNull null]) {
         indPadding  = (int) [call.arguments[@"indPadding"] integerValue];
     }
-    if (call.arguments[@"releaseMode"] != nil) {
+    if (call.arguments[@"releaseMode"] != [NSNull null]) {
         releaseMode = (BOOL) [call.arguments [@"releaseMode"] boolValue];
     }
-    if (call.arguments[@"rewardMode"] != nil) {
+    if (call.arguments[@"rewardMode"] != [NSNull null]) {
         NSLog(@"rewardMode is: %@", call.arguments[@"rewardMode"]);
         rewardMode = (BOOL)[call.arguments[@"rewardMode"] boolValue];
            NSLog(@"rewardMode is: %d",rewardMode);
     }
-    if (call.arguments[@"request_uuid"] != nil) {
+    if (call.arguments[@"request_uuid"] != [NSNull null]) {
         request_uuid = call.arguments[@"request_uuid"];
     }
-    if (call.arguments[@"offerwallMode"] != nil) {
+    if (call.arguments[@"offerwallMode"] != [NSNull null]) {
         offerwallMode = (BOOL)[call.arguments[@"offerwallMode"]boolValue];
     }
 

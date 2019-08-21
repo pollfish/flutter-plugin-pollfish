@@ -47,7 +47,8 @@ class _MyAppState extends State<MyApp> {
         rewardMode: _rewardMode,
         releaseMode: _releaseMode,
         offerwallMode: (_currentIndex ==2)?true:false,
-        requestUUID: requestUUID);
+        requestUUID: requestUUID
+    );
 
     FlutterPollfish.instance
         .setPollfishReceivedSurveyListener(onPollfishSurveyReveived);
