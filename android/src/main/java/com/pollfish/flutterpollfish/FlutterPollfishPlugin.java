@@ -133,7 +133,12 @@ public class FlutterPollfishPlugin implements MethodCallHandler {
 
                 Log.d(TAG, "onPollfishSurveyNotAvailable");
 
-                channel.invokeMethod("pollfishSurveyNotAvailable", null);
+                        activity.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                channel.invokeMethod("pollfishSurveyNotAvailable", null);
+                            }
+                        });
             }
         };
 
