@@ -22,3 +22,7 @@
 ## 1.0.0
 
 * Stable release. Updated with Pollfish Android SDK v5.3.3 and Pollfish iOS SDK v5.2.5
+
+## 1.0.3
+
+* Updated with Pollfish Android SDK v5.4.1

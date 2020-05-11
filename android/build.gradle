@@ -35,6 +35,6 @@ android {
     dependencies {
         api 'com.google.android.gms:play-services-ads-identifier:16.0.0'
         api 'com.google.android.gms:play-services-base:16.0.1'
-        api 'com.pollfish:pollfish:5.3.3:googleplayRelease@aar'
+        api 'com.pollfish:pollfish:5.4.1:googleplayRelease@aar'
     }
 }
