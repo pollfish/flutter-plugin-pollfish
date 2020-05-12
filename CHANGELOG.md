@@ -26,3 +26,7 @@
 ## 1.0.3
 
 * Updated with Pollfish Android SDK v5.4.1
+
+## 1.0.4
+
+* Updated with Pollfish Android SDK v5.5.1
