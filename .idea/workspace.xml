@@ -10,18 +10,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fcf70e2d-8c48-4829-afda-3a5d8471dfbe" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/CHANGELOG.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_pollfish/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_pollfish/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_pollfish/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_pollfish/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_pollfish/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_pollfish/CHANGELOG.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_pollfish/example/ios/Flutter/flutter_export_environment.sh" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_pollfish/example/ios/Flutter/flutter_export_environment.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_pollfish/ios/Classes/FlutterPollfishPlugin.m" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_pollfish/ios/Classes/FlutterPollfishPlugin.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_pollfish/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_pollfish/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/ios/Flutter/flutter_export_environment.sh" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/Flutter/flutter_export_environment.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Classes/FlutterPollfishPlugin.m" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Classes/FlutterPollfishPlugin.m" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="8_Foldable_API_29" />
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -29,45 +35,16 @@
       </list>
     </option>
   </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>_invokeBooleanMethod</find>
-      <find>init</find>
-      <find>attr</find>
-      <find>completed_survey</find>
-      <find>invoke</find>
-      <find>setMethodCallHandler</find>
-      <find>Pollfish</find>
-      <find>exctractPollfishParams</find>
-      <find>pollfishSurveyOpened</find>
-      <find>_pollfishSurveyClosedSurveyListener</find>
-      <find>pollfishSurveyClosedSurvey</find>
-      <find>setPollfishSurveyClosedSurveyListener</find>
-      <find>onPollfishSurveyClosed</find>
-      <find>surveyClosed</find>
-      <find>close</find>
-      <find>hide</find>
-      <find>onPollfishSurveyOpened</find>
-      <find>_pollfishSurveyClosedListener</find>
-      <find>pollfishSurveyClosed</find>
-      <find>setPollfishSurveyClosedListener</find>
-      <find>_platformCallHandler</find>
-      <find>StatefulWidget</find>
-      <find>initPollfish</find>
-      <find>_currentIndex</find>
-      <find>nsnull</find>
-      <find>pollfishPosition</find>
-      <find>integerValue</find>
-      <find>_releaseMode</find>
-      <find>onPollfishSurveyNotAvailable</find>
-      <find>activity</find>
-    </findStrings>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1bkgB6gU0IIIYnOCbvM0haflJRP" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="ScreenshotViewer.SavePath" value="$PROJECT_DIR$/.." />
@@ -88,18 +65,6 @@
       <recent name="$PROJECT_DIR$/example/android/app/src/main/res/xml" />
       <recent name="$PROJECT_DIR$/example/android/app/src/main/res" />
     </key>
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
   </component>
   <component name="RunManager">
     <configuration name="&lt;template&gt;" type="JUnit" default="true" selected="false">
@@ -149,10 +114,57 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
     </option>
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="1638" height="230" key="GridCell.Tab.0.bottom" timestamp="1591951558370">
+      <screen x="0" y="23" width="1680" height="1027" />
+    </state>
+    <state width="1638" height="230" key="GridCell.Tab.0.bottom/0.23.1680.1027@0.23.1680.1027" timestamp="1591951558370" />
+    <state width="1638" height="230" key="GridCell.Tab.0.center" timestamp="1591951558369">
+      <screen x="0" y="23" width="1680" height="1027" />
+    </state>
+    <state width="1638" height="230" key="GridCell.Tab.0.center/0.23.1680.1027@0.23.1680.1027" timestamp="1591951558369" />
+    <state width="1638" height="230" key="GridCell.Tab.0.left" timestamp="1591951558368">
+      <screen x="0" y="23" width="1680" height="1027" />
+    </state>
+    <state width="1638" height="230" key="GridCell.Tab.0.left/0.23.1680.1027@0.23.1680.1027" timestamp="1591951558368" />
+    <state width="1638" height="230" key="GridCell.Tab.0.right" timestamp="1591951558370">
+      <screen x="0" y="23" width="1680" height="1027" />
+    </state>
+    <state width="1638" height="230" key="GridCell.Tab.0.right/0.23.1680.1027@0.23.1680.1027" timestamp="1591951558370" />
+    <state width="1638" height="336" key="GridCell.Tab.1.bottom" timestamp="1591951559313">
+      <screen x="0" y="23" width="1680" height="1027" />
+    </state>
+    <state width="1638" height="336" key="GridCell.Tab.1.bottom/0.23.1680.1027@0.23.1680.1027" timestamp="1591951559313" />
+    <state width="1638" height="336" key="GridCell.Tab.1.center" timestamp="1591951559313">
+      <screen x="0" y="23" width="1680" height="1027" />
+    </state>
+    <state width="1638" height="336" key="GridCell.Tab.1.center/0.23.1680.1027@0.23.1680.1027" timestamp="1591951559313" />
+    <state width="1638" height="336" key="GridCell.Tab.1.left" timestamp="1591951559313">
+      <screen x="0" y="23" width="1680" height="1027" />
+    </state>
+    <state width="1638" height="336" key="GridCell.Tab.1.left/0.23.1680.1027@0.23.1680.1027" timestamp="1591951559313" />
+    <state width="1638" height="336" key="GridCell.Tab.1.right" timestamp="1591951559313">
+      <screen x="0" y="23" width="1680" height="1027" />
+    </state>
+    <state width="1638" height="336" key="GridCell.Tab.1.right/0.23.1680.1027@0.23.1680.1027" timestamp="1591951559313" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/flutter_pollfish.dart</url>
+          <line>104</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

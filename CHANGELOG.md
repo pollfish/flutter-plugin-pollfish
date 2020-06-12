@@ -30,3 +30,7 @@
 ## 1.0.4
 
 * Updated with Pollfish Android SDK v5.5.1
+
+## 1.0.5
+
+* Fixed issue with Survey Closed listed on iOS

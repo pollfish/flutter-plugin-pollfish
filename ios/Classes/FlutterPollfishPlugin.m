@@ -151,7 +151,7 @@ FlutterMethodChannel *_channel_pollfish;
 
 + (void)surveyClosed:(NSNotification *)notification
 {
-    [_channel_pollfish invokeMethod:@"pollfishSurveyClosedSurvey" arguments:nil];
+    [_channel_pollfish invokeMethod:@"pollfishSurveyClosed" arguments:nil];
 }
 
 + (void)surveyReceived:(NSNotification *)notification
