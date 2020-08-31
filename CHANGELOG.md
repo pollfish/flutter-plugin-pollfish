@@ -34,3 +34,7 @@
 ## 1.0.5
 
 * Fixed issue with Survey Closed listed on iOS
+
+## 1.1.0
+
+* Updated with Pollfish iOS SDK v5.3.1
