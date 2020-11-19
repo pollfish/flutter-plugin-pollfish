@@ -12,17 +12,9 @@
     <list default="true" id="fcf70e2d-8c48-4829-afda-3a5d8471dfbe" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/CHANGELOG.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/example/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/example/.flutter-plugins-dependencies" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_pollfish/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_pollfish/CHANGELOG.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_pollfish/example/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_pollfish/example/.flutter-plugins-dependencies" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_pollfish/example/ios/Flutter/flutter_export_environment.sh" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_pollfish/example/ios/Flutter/flutter_export_environment.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_pollfish/example/ios/Runner.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_pollfish/example/ios/Runner.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_pollfish/example/ios/Runner.xcworkspace/xcshareddata/WorkspaceSettings.xcsettings" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_pollfish/ios/flutter_pollfish.podspec" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_pollfish/ios/flutter_pollfish.podspec" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_pollfish/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_pollfish/pubspec.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/example/ios/Flutter/flutter_export_environment.sh" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/Flutter/flutter_export_environment.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/ios/Runner.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/Runner.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/ios/Runner.xcworkspace/xcshareddata/WorkspaceSettings.xcsettings" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/ios/flutter_pollfish.podspec" beforeDir="false" afterPath="$PROJECT_DIR$/ios/flutter_pollfish.podspec" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
@@ -45,7 +37,6 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
@@ -55,12 +46,14 @@
     <property name="android.project.structure.last.selected" value="SDK Location" />
     <property name="android.project.structure.proportion" value="0.15" />
     <property name="dart.analysis.tool.window.force.activate" value="false" />
+    <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="io.flutter.reload.alreadyRun" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="SDK Location" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RecentsManager">
@@ -117,46 +110,37 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1638" height="272" key="GridCell.Tab.0.bottom" timestamp="1598883348419">
+    <state x="304" y="198" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1605802776034">
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
-    <state width="1638" height="272" key="GridCell.Tab.0.bottom/0.23.1680.1027@0.23.1680.1027" timestamp="1598883348419" />
-    <state width="1638" height="272" key="GridCell.Tab.0.center" timestamp="1598883348419">
+    <state x="304" y="198" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1680.1027@0.23.1680.1027" timestamp="1605802776034" />
+    <state width="0" height="0" key="GridCell.Tab.0.bottom" timestamp="1605803888732">
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
-    <state width="1638" height="272" key="GridCell.Tab.0.center/0.23.1680.1027@0.23.1680.1027" timestamp="1598883348419" />
-    <state width="1638" height="272" key="GridCell.Tab.0.left" timestamp="1598883348418">
+    <state width="0" height="0" key="GridCell.Tab.0.bottom/0.23.1680.1027@0.23.1680.1027" timestamp="1605803888732" />
+    <state width="0" height="0" key="GridCell.Tab.0.center" timestamp="1605803888730">
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
-    <state width="1638" height="272" key="GridCell.Tab.0.left/0.23.1680.1027@0.23.1680.1027" timestamp="1598883348418" />
-    <state width="1638" height="272" key="GridCell.Tab.0.right" timestamp="1598883348419">
+    <state width="0" height="0" key="GridCell.Tab.0.center/0.23.1680.1027@0.23.1680.1027" timestamp="1605803888730" />
+    <state width="0" height="0" key="GridCell.Tab.0.left" timestamp="1605803888729">
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
-    <state width="1638" height="272" key="GridCell.Tab.0.right/0.23.1680.1027@0.23.1680.1027" timestamp="1598883348419" />
-    <state width="1638" height="336" key="GridCell.Tab.1.bottom" timestamp="1591951559313">
+    <state width="0" height="0" key="GridCell.Tab.0.left/0.23.1680.1027@0.23.1680.1027" timestamp="1605803888729" />
+    <state width="0" height="0" key="GridCell.Tab.0.right" timestamp="1605803888731">
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
-    <state width="1638" height="336" key="GridCell.Tab.1.bottom/0.23.1680.1027@0.23.1680.1027" timestamp="1591951559313" />
-    <state width="1638" height="336" key="GridCell.Tab.1.center" timestamp="1591951559313">
+    <state width="0" height="0" key="GridCell.Tab.0.right/0.23.1680.1027@0.23.1680.1027" timestamp="1605803888731" />
+    <state x="341" y="175" key="SettingsEditor" timestamp="1605803489887">
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
-    <state width="1638" height="336" key="GridCell.Tab.1.center/0.23.1680.1027@0.23.1680.1027" timestamp="1591951559313" />
-    <state width="1638" height="336" key="GridCell.Tab.1.left" timestamp="1591951559313">
-      <screen x="0" y="23" width="1680" height="1027" />
-    </state>
-    <state width="1638" height="336" key="GridCell.Tab.1.left/0.23.1680.1027@0.23.1680.1027" timestamp="1591951559313" />
-    <state width="1638" height="336" key="GridCell.Tab.1.right" timestamp="1591951559313">
-      <screen x="0" y="23" width="1680" height="1027" />
-    </state>
-    <state width="1638" height="336" key="GridCell.Tab.1.right/0.23.1680.1027@0.23.1680.1027" timestamp="1591951559313" />
+    <state x="341" y="175" key="SettingsEditor/0.23.1680.1027@0.23.1680.1027" timestamp="1605803489887" />
   </component>
 </project>
