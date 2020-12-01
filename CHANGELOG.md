@@ -43,3 +43,6 @@
 
 * Updated with Pollfish iOS SDK v5.4.1 and Android SDK v5.6.0
 
+## 1.2.1
+
+* Updated with Pollfish iOS SDK v5.5.0
