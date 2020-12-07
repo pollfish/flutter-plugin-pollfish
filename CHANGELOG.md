@@ -46,3 +46,7 @@
 ## 1.2.1
 
 * Updated with Pollfish iOS SDK v5.5.0
+
+## 1.2.2
+
+*  Updated with Pollfish iOS SDK v5.5.1
