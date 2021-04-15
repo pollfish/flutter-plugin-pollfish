@@ -47,7 +47,7 @@ FlutterPollfish.instance.init(
      rewardMode: false,
      releaseMode: true,
      requestUUID: 'USER_INTERNAL_ID',
-     offerwallMode:false);
+     offerwallMode: false);
 ```
 
 ## Manually showing or hiding Pollfish panel
@@ -87,7 +87,7 @@ void onPollfishSurveyReveived(String result) => setState(() {
     List<String> surveyCharacteristics = result.split(',');
 
      if (surveyCharacteristics.length >= 6) {
-       String  _logText =
+       String _logText =
           'Survey Received: - SurveyInfo with CPA: ${surveyCharacteristics[0]} and IR: ${surveyCharacteristics[1]} and LOI: ${surveyCharacteristics[2]} and SurveyClass: ${surveyCharacteristics[3]} and RewardName: ${surveyCharacteristics[4]}  and RewardValue: ${surveyCharacteristics[5]}';
        
     }
@@ -127,7 +127,7 @@ A notification that informs that Pollfish Survey panel opened
 
 
 ```dart
-FlutterPollfish.instance.setPollfishSurveyOpenedListener(onPollfishSurveyOpened);
+FlutterPollfish.instance.setPollfishOpenedListener(onSurveyOpened);
 
 void onPollfishSurveyOpened() => setState(() {
 
@@ -142,7 +142,7 @@ A notification that informs that Pollfish Survey panel closed
 
 
 ```dart
-FlutterPollfish.instance.setPollfishSurveyClosedListener(onPollfishSurveyClosed);
+FlutterPollfish.instance.setPollfishClosedListener(onPollfishSurveyClosed);
 
 void onPollfishSurveyClosed() => setState(() {
 
@@ -197,7 +197,7 @@ void onPollfishUserNotEligible() => setState(() {
 ```
 
 
-## Following the rewarded and/or theOfferwall approach
+## Following the rewarded and/or the Offerwall approach
 
 An example is provided on [Github](https://github.com/pollfish/flutter-plugin-pollfish) that demonstrates how a publisher can implement the rewarded and/or the Offerwall approach. Publisher has to initialize Pollish in reward mode = true and specify if Offerwall mode should be on. When a survey is received, the publisher can show a custom prompt, to incentivize user to participate to the survey. If the user clicks on the prompt, the publisher can call Pollish show to show the questioanniare. Upon survey completion, the publisher can reward the user.
 
@@ -209,7 +209,7 @@ limitations:
 
 - You cannot pass custom attributes during initialization
 - No tests implemented yet
-- Minimum iOS is 9.0 and minimum Android version is 16
+- Minimum iOS is 9.0 and minimum Android version is 21
 
 For other Pollfish products, see
 [Pollfish docs](https://www.pollfish.com/docs).

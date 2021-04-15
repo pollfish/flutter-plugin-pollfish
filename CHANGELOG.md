@@ -50,3 +50,12 @@
 ## 1.2.2
 
 *  Updated with Pollfish iOS SDK v5.5.1
+
+## 1.2.3
+
+*  Updated with Pollfish iOS SDK v5.5.2
+
+## 2.0.0
+
+* Support for Flutter 2
+* Updated with Pollfish Android SDK v6.0.2 and iOS SDK v6.0.0

@@ -1,191 +1,178 @@
 package com.pollfish.flutterpollfish;
 
+import android.app.Activity;
+import android.util.Log;
+
+import androidx.annotation.NonNull;
+
+import com.pollfish.Pollfish;
+import com.pollfish.builder.Params;
+import com.pollfish.builder.Platform;
+import com.pollfish.builder.Position;
+import com.pollfish.callback.PollfishClosedListener;
+import com.pollfish.callback.PollfishOpenedListener;
+import com.pollfish.callback.PollfishSurveyCompletedListener;
+import com.pollfish.callback.PollfishSurveyNotAvailableListener;
+import com.pollfish.callback.PollfishSurveyReceivedListener;
+import com.pollfish.callback.PollfishUserNotEligibleListener;
+import com.pollfish.callback.PollfishUserRejectedSurveyListener;
+import com.pollfish.callback.SurveyInfo;
+
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+import io.flutter.embedding.engine.plugins.FlutterPlugin;
+import io.flutter.embedding.engine.plugins.activity.ActivityAware;
+import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding;
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
 import io.flutter.plugin.common.MethodChannel.Result;
-import io.flutter.plugin.common.PluginRegistry.Registrar;
-
-import android.app.Activity;
-import android.util.Log;
-
-import com.pollfish.classes.SurveyInfo;
-import com.pollfish.constants.Position;
-import com.pollfish.constants.UserProperties;
-import com.pollfish.interfaces.PollfishClosedListener;
-import com.pollfish.interfaces.PollfishCompletedSurveyListener;
-import com.pollfish.interfaces.PollfishOpenedListener;
-import com.pollfish.interfaces.PollfishReceivedSurveyListener;
-import com.pollfish.interfaces.PollfishSurveyNotAvailableListener;
-import com.pollfish.interfaces.PollfishUserNotEligibleListener;
-import com.pollfish.interfaces.PollfishUserRejectedSurveyListener;
-import com.pollfish.main.PollFish;
-
-import java.util.HashMap;
-import java.util.Map;
 
 
 /**
  * FlutterPollfishPlugin
  */
-public class FlutterPollfishPlugin implements MethodCallHandler {
+public class FlutterPollfishPlugin implements FlutterPlugin, ActivityAware, MethodCallHandler {
 
     public static final String TAG = "FlutterPollfishPlugin";
 
-    private final Registrar registrar;
-    private final MethodChannel channel;
+    private MethodChannel channel;
+    private FlutterPluginBinding binding = null;
+    private Activity activity = null;
 
-    /**
-     * Plugin registration.
-     */
-    public static void registerWith(Registrar registrar) {
-        final MethodChannel channel = new MethodChannel(registrar.messenger(), "flutter_pollfish");
-        channel.setMethodCallHandler(new FlutterPollfishPlugin(registrar, channel));
+    @Override
+    public void onAttachedToEngine(@NonNull FlutterPluginBinding binding) {
+        channel = new MethodChannel(binding.getBinaryMessenger(), "flutter_pollfish");
+        channel.setMethodCallHandler(this);
+        this.binding = binding;
     }
 
-    private FlutterPollfishPlugin(Registrar registrar, MethodChannel channel) {
-        this.registrar = registrar;
-        this.channel = channel;
-        this.channel.setMethodCallHandler(this);
+    @Override
+    public void onDetachedFromEngine(@NonNull FlutterPluginBinding binding) {
+        channel.setMethodCallHandler(null);
+        this.binding = null;
     }
 
+    @Override
+    public void onAttachedToActivity(@NonNull ActivityPluginBinding binding) {
+        activity = binding.getActivity();
+    }
 
-    private void initPollfish(final Activity activity, final String apiKey, final int p,
-                              final int indPadding, final boolean releaseMode,
+    @Override
+    public void onDetachedFromActivityForConfigChanges() {}
+
+    @Override
+    public void onReattachedToActivityForConfigChanges(@NonNull ActivityPluginBinding binding) {}
+
+    @Override
+    public void onDetachedFromActivity() {
+        activity = null;
+    }
+
+    private void initPollfish(final Activity activity,
+                              final String apiKey,
+                              final int p,
+                              final int indPadding,
+                              final boolean releaseMode,
                               final boolean rewardMode,
-                              final boolean offerwallMode, final String request_uuid) {
-
-        String requestUUIDtemp = null;
-
-        if (request_uuid != null) {
-            if (request_uuid.trim().length() > 0) {
-                requestUUIDtemp = request_uuid;
-            }
-        }
-
-        final String requestUUID = requestUUIDtemp;
-
-        final PollfishReceivedSurveyListener pollfishReceivedSurveyListener = new PollfishReceivedSurveyListener() {
-
-            @Override
-            public void onPollfishSurveyReceived(SurveyInfo surveyInfo) {
-
-                if(surveyInfo!=null){
-
-                Log.d(TAG, "onPollfishSurveyReceived (CPA: " + surveyInfo.getSurveyCPA() + ", IR: " + String.valueOf(surveyInfo.getSurveyIR()) + ", LOI: " + String.valueOf(surveyInfo.getSurveyLOI()) + ", SurveyClass: " + String.valueOf(surveyInfo.getSurveyClass())  + ", RewardName: " + String.valueOf(surveyInfo.getRewardName())  + ", RewardValue: " + String.valueOf(surveyInfo.getRewardValue())+ ")");
-
-                channel.invokeMethod("pollfishSurveyReceived", String.valueOf(surveyInfo.getSurveyCPA()) + "," + String.valueOf(surveyInfo.getSurveyIR()) + "," + String.valueOf(surveyInfo.getSurveyLOI()) + "," + String.valueOf(surveyInfo.getSurveyClass()  + "," + String.valueOf(surveyInfo.getRewardName())  + "," + String.valueOf(surveyInfo.getRewardValue())));
-
-                }else{
-
-                    Log.d(TAG, "onPollfishSurveyReceived");
-
-                    channel.invokeMethod("pollfishSurveyReceived", "");
-                }
-            }
-        };
-
-        final PollfishCompletedSurveyListener pollfishCompletedSurveyListener = new PollfishCompletedSurveyListener() {
-
-            @Override
-            public void onPollfishSurveyCompleted(SurveyInfo surveyInfo) {
-
-                if(surveyInfo!=null){
-
-                    Log.d(TAG, "onPollfishSurveyCompleted (CPA: " + surveyInfo.getSurveyCPA() + ", IR: " + String.valueOf(surveyInfo.getSurveyIR()) + ", LOI: " + String.valueOf(surveyInfo.getSurveyLOI()) + ", SurveyClass: " + String.valueOf(surveyInfo.getSurveyClass())  + ", RewardName: " + String.valueOf(surveyInfo.getRewardName())  + ", RewardValue: " + String.valueOf(surveyInfo.getRewardValue())+ ")");
-
-                    channel.invokeMethod("pollfishSurveyCompleted", String.valueOf(surveyInfo.getSurveyCPA()) + "," + String.valueOf(surveyInfo.getSurveyIR()) + "," + String.valueOf(surveyInfo.getSurveyLOI()) + "," + String.valueOf(surveyInfo.getSurveyClass()  + "," + String.valueOf(surveyInfo.getRewardName())  + "," + String.valueOf(surveyInfo.getRewardValue())));
-
-                }else{
-
-                    Log.d(TAG, "onPollfishSurveyCompleted");
-
-                    channel.invokeMethod("pollfishSurveyCompleted", "");
-                }
-
-
-            }
-        };
-
-        final PollfishOpenedListener pollfishOpenedListener = new PollfishOpenedListener() {
-
-            public void onPollfishOpened() {
-
-                Log.d(TAG, "onPollfishOpened");
-
-                channel.invokeMethod("pollfishSurveyOpened", null);
-            }
-        };
-
-
-        final PollfishClosedListener pollfishClosedListener = new PollfishClosedListener() {
-
-            public void onPollfishClosed() {
-
-                Log.d(TAG, "onPollfishClosed");
-
-                channel.invokeMethod("pollfishSurveyClosed", null);
-            }
-        };
-
-        final PollfishSurveyNotAvailableListener pollfishSurveyNotAvailableListener = new PollfishSurveyNotAvailableListener() {
-            public void onPollfishSurveyNotAvailable() {
-
-                Log.d(TAG, "onPollfishSurveyNotAvailable");
-
-                        activity.runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                channel.invokeMethod("pollfishSurveyNotAvailable", null);
-                            }
-                        });
-            }
-        };
-
-        final PollfishUserNotEligibleListener pollfishUserNotEligibleListener = new PollfishUserNotEligibleListener() {
-            public void onUserNotEligible() {
-                Log.d(TAG, "onUserNotEligible");
-
-                channel.invokeMethod("pollfishUserNotEligible", null);
-            }
-        };
-
-        final PollfishUserRejectedSurveyListener pollfishUserRejectedSurveyListener = new PollfishUserRejectedSurveyListener() {
-            public void onUserRejectedSurvey() {
-                Log.d(TAG, "onUserRejectedSurvey");
-
-                channel.invokeMethod("pollfishUserRejectedSurvey", null);
-            }
-        };
+                              final boolean offerwallMode,
+                              final String request_uuid) {
 
         final Position position = Position.values()[p];
 
-        activity.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
+        Params.Builder paramsBuilder = new Params.Builder(apiKey)
+                .indicatorPosition(position)
+                .indicatorPadding(indPadding)
+                .pollfishSurveyCompletedListener(new PollfishSurveyCompletedListener() {
+                    @Override
+                    public void onPollfishSurveyCompleted(@NotNull SurveyInfo surveyInfo) {
+                        if (surveyInfo != null) {
 
-                PollFish.initWith(activity,
-                        new PollFish.ParamsBuilder(apiKey)
-                                .indicatorPosition(position)
-                                .indicatorPadding(indPadding)
-                                .pollfishReceivedSurveyListener(pollfishReceivedSurveyListener)
-                                .pollfishCompletedSurveyListener(pollfishCompletedSurveyListener)
-                                .pollfishSurveyNotAvailableListener(pollfishSurveyNotAvailableListener)
-                                .pollfishUserRejectedSurveyListener(pollfishUserRejectedSurveyListener)
-                                .pollfishUserNotEligibleListener(pollfishUserNotEligibleListener)
-                                .pollfishOpenedListener(pollfishOpenedListener)
-                                .pollfishClosedListener(pollfishClosedListener)
-                                .requestUUID(requestUUID)
-                                .releaseMode(releaseMode)
-                                .rewardMode(rewardMode)
-                                .offerWallMode(offerwallMode)
-                                .build());
+                            Log.d(TAG, "onPollfishSurveyCompleted (CPA: " + surveyInfo.getSurveyCPA() + ", IR: " + surveyInfo.getSurveyIR() + ", LOI: " + surveyInfo.getSurveyLOI() + ", SurveyClass: " + surveyInfo.getSurveyClass() + ", RewardName: " + surveyInfo.getRewardName() + ", RewardValue: " + surveyInfo.getRewardValue() + ")");
+
+                            channel.invokeMethod("pollfishSurveyCompleted", surveyInfo.getSurveyCPA() + "," + surveyInfo.getSurveyIR() + "," + surveyInfo.getSurveyLOI() + "," + surveyInfo.getSurveyClass() + "," + surveyInfo.getRewardName() + "," + surveyInfo.getRewardValue());
+
+                        } else {
+
+                            Log.d(TAG, "onPollfishSurveyCompleted");
+
+                            channel.invokeMethod("pollfishSurveyCompleted", "");
+                        }
+                    }
+                })
+                .pollfishSurveyReceivedListener(new PollfishSurveyReceivedListener() {
+                    @Override
+                    public void onPollfishSurveyReceived(@Nullable SurveyInfo surveyInfo) {
+                        if (surveyInfo != null) {
+
+                            Log.d(TAG, "onPollfishSurveyReceived (CPA: " + surveyInfo.getSurveyCPA() + ", IR: " + surveyInfo.getSurveyIR() + ", LOI: " + surveyInfo.getSurveyLOI() + ", SurveyClass: " + surveyInfo.getSurveyClass() + ", RewardName: " + surveyInfo.getRewardName() + ", RewardValue: " + surveyInfo.getRewardValue() + ")");
+
+                            channel.invokeMethod("pollfishSurveyReceived", surveyInfo.getSurveyCPA() + "," + surveyInfo.getSurveyIR() + "," + surveyInfo.getSurveyLOI() + "," + surveyInfo.getSurveyClass() + "," + surveyInfo.getRewardName() + "," + surveyInfo.getRewardValue());
+
+                        } else {
+
+                            Log.d(TAG, "onPollfishSurveyReceived");
+
+                            channel.invokeMethod("pollfishSurveyReceived", "");
+                        }
+                    }
+                })
+                .pollfishClosedListener(new PollfishClosedListener() {
+                    @Override
+                    public void onPollfishClosed() {
+                        Log.d(TAG, "onPollfishClosed");
+
+                        channel.invokeMethod("pollfishClosed", null);
+                    }
+                })
+                .pollfishOpenedListener(new PollfishOpenedListener() {
+                    @Override
+                    public void onPollfishOpened() {
+                        Log.d(TAG, "onPollfishOpened");
+
+                        channel.invokeMethod("pollfishOpened", null);
+                    }
+                })
+                .pollfishUserNotEligibleListener(new PollfishUserNotEligibleListener() {
+                    @Override
+                    public void onUserNotEligible() {
+                        Log.d(TAG, "onUserNotEligible");
+
+                        channel.invokeMethod("pollfishUserNotEligible", null);
+                    }
+                })
+                .pollfishUserRejectedSurveyListener(new PollfishUserRejectedSurveyListener() {
+                    @Override
+                    public void onUserRejectedSurvey() {
+                        Log.d(TAG, "onUserRejectedSurvey");
+
+                        channel.invokeMethod("pollfishUserRejectedSurvey", null);
+                    }
+                })
+                .pollfishSurveyNotAvailableListener(new PollfishSurveyNotAvailableListener() {
+                    @Override
+                    public void onPollfishSurveyNotAvailable() {
+                        Log.d(TAG, "onPollfishSurveyNotAvailable");
+
+                        channel.invokeMethod("pollfishSurveyNotAvailable", null);
+                    }
+                })
+                .releaseMode(releaseMode)
+                .rewardMode(rewardMode)
+                .platform(Platform.FLUTTER)
+                .offerwallMode(offerwallMode);
+
+        if (request_uuid != null) {
+            if (request_uuid.trim().length() > 0) {
+                paramsBuilder.requestUUID(request_uuid);
             }
-        });
+        }
 
+        Pollfish.initWith(activity, paramsBuilder.build());
     }
 
-    private void exctractPollfishParams(MethodCall call, Result result) {
+    private void exctractPollfishParams(Activity activity, MethodCall call, Result result) {
 
         String api_key = null;
 
@@ -196,12 +183,11 @@ public class FlutterPollfishPlugin implements MethodCallHandler {
         if (api_key == null) {
             result.error("no_api_key", "a null api_key was provided", null);
             return;
-
         }
 
-        int pollfishPosition=0;
-        int indPadding =50;
-        boolean releaseMode= false;
+        int pollfishPosition = 0;
+        int indPadding = 50;
+        boolean releaseMode = false;
         boolean rewardMode = false;
         boolean offerwallMode = false;
         String request_uuid = null;
@@ -234,29 +220,32 @@ public class FlutterPollfishPlugin implements MethodCallHandler {
         Log.d(TAG, "offerwallMode: " + offerwallMode);
         Log.d(TAG, "request_uuid: " + request_uuid);
 
-        initPollfish(registrar.activity(), api_key, pollfishPosition, indPadding, releaseMode, rewardMode,offerwallMode, request_uuid);
+        if (binding != null)
+
+        initPollfish(activity, api_key, pollfishPosition, indPadding, releaseMode, rewardMode, offerwallMode, request_uuid);
     }
 
     @Override
-    public void onMethodCall(MethodCall call, Result result) {
+    public void onMethodCall(MethodCall call, @NotNull Result result) {
+        switch (call.method) {
+            case "init":
+                if (activity != null) {
+                    Log.d(TAG, "Pollfish init");
 
-        if (call.method.equals("init")) {
+                    exctractPollfishParams(activity, call, result);
+                }
 
-            Log.d(TAG, "Pollfish init");
+                break;
+            case "show":
+                Log.d(TAG, "Pollfish show");
+                Pollfish.show();
 
-            exctractPollfishParams(call, result);
+                break;
+            case "hide":
+                Log.d(TAG, "Pollfish hide");
+                Pollfish.hide();
 
-        } else if (call.method.equals("show")) {
-
-            Log.d(TAG, "Pollfish show");
-
-            PollFish.show();
-
-        } else if (call.method.equals("hide")) {
-
-            Log.d(TAG, "Pollfish hide");
-
-            PollFish.hide();
+                break;
         }
     }
 }
