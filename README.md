@@ -80,7 +80,7 @@ Once a survey is received, Pollish Survey Received notification is fired to info
 - Reward Value: Reward value based on exchange rate as specified on Pollfish Dashboard
 
 ```dart
-FlutterPollfish.instance.setPollfishReceivedSurveyListener(onPollfishSurveyReveived);
+FlutterPollfish.instance.setPollfishSurveyReceivedListener(onPollfishSurveyReveived);
 
 void onPollfishSurveyReveived(String result) => setState(() {
 
@@ -106,7 +106,7 @@ Once a survey is completed, Pollish Survey Completed notification is fired to in
 
 
 ```dart
-FlutterPollfish.instance.setPollfishCompletedSurveyListener(onPollfishSurveyCompleted);
+FlutterPollfish.instance.setPollfishSurveyCompletedListener(onPollfishSurveyCompleted);
 
 void onPollfishSurveyCompleted(String result) => setState(() {
 
@@ -157,7 +157,7 @@ A notification that informs that no survey is available for that user
 
 
 ```dart
-FlutterPollfish.instance.setPollfishSurveyNotAvailableSurveyListener(onPollfishSurveyNotAvailable);
+FlutterPollfish.instance.setPollfishSurveyNotAvailableListener(onPollfishSurveyNotAvailable);
 
 void onPollfishSurveyNotAvailable() => setState(() {
 

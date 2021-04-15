@@ -59,3 +59,7 @@
 
 * Support for Flutter 2
 * Updated with Pollfish Android SDK v6.0.2 and iOS SDK v6.0.0
+
+## 2.0.1
+
+* Updated Documentation
