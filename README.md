@@ -127,9 +127,9 @@ A notification that informs that Pollfish Survey panel opened
 
 
 ```dart
-FlutterPollfish.instance.setPollfishOpenedListener(onSurveyOpened);
+FlutterPollfish.instance.setPollfishOpenedListener(onPollfishOpened);
 
-void onPollfishSurveyOpened() => setState(() {
+void onPollfishOpened() => setState(() {
 
    String _logText = 'Survey Panel Open';
 }
@@ -142,9 +142,9 @@ A notification that informs that Pollfish Survey panel closed
 
 
 ```dart
-FlutterPollfish.instance.setPollfishClosedListener(onPollfishSurveyClosed);
+FlutterPollfish.instance.setPollfishClosedListener(onPollfishClosed);
 
-void onPollfishSurveyClosed() => setState(() {
+void onPollfishClosed() => setState(() {
 
    String _logText = 'Survey Panel Closed';
 }
