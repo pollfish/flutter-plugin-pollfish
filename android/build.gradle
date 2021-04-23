@@ -25,10 +25,10 @@ android {
     compileSdkVersion 29
 
     defaultConfig {
-        minSdkVersion 21
+        minSdkVersion 19
     }
 }
 
 dependencies {
-    implementation 'com.pollfish:pollfish-googleplay:6.0.2'
+    implementation 'com.pollfish:pollfish-googleplay:6.0.3'
 }

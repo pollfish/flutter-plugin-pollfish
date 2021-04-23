@@ -10,12 +10,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fcf70e2d-8c48-4829-afda-3a5d8471dfbe" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/src/main/java/com/pollfish/flutterpollfish/FlutterPollfishPlugin.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/src/main/java/com/pollfish/flutterpollfish/FlutterPollfishPlugin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/example/.flutter-plugins-dependencies" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/android/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/example/android/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -87,6 +97,7 @@
       </method>
     </configuration>
   </component>
+  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -98,6 +109,8 @@
       <option name="presentableId" value="Default" />
       <updated>1547041067700</updated>
       <workItem from="1618409756512" duration="3000" />
+      <workItem from="1619104831308" duration="7000" />
+      <workItem from="1619163507810" duration="109000" />
     </task>
     <servers />
   </component>
@@ -109,6 +122,9 @@
       <are-packages-shown value="true" />
       <is-autoscroll-to-source value="true" />
     </todo-panel>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -128,26 +144,30 @@
     </ignored-roots>
   </component>
   <component name="WindowStateProjectService">
+    <state x="100" y="125" width="1240" height="675" key="AVDManager" timestamp="1619174433553">
+      <screen x="0" y="25" width="1440" height="875" />
+    </state>
+    <state x="100" y="125" width="1240" height="675" key="AVDManager/0.25.1440.875@0.25.1440.875" timestamp="1619174433553" />
     <state x="278" y="36" key="CommitChangelistDialog2" timestamp="1618480623680">
       <screen x="0" y="25" width="1440" height="875" />
     </state>
     <state x="278" y="36" key="CommitChangelistDialog2/0.25.1440.875@0.25.1440.875" timestamp="1618480623680" />
-    <state width="1398" height="253" key="GridCell.Tab.0.bottom" timestamp="1618482795835">
+    <state width="1398" height="431" key="GridCell.Tab.0.bottom" timestamp="1619176305331">
       <screen x="0" y="25" width="1440" height="875" />
     </state>
-    <state width="1398" height="253" key="GridCell.Tab.0.bottom/0.25.1440.875@0.25.1440.875" timestamp="1618482795835" />
-    <state width="1398" height="253" key="GridCell.Tab.0.center" timestamp="1618482795835">
+    <state width="1398" height="431" key="GridCell.Tab.0.bottom/0.25.1440.875@0.25.1440.875" timestamp="1619176305331" />
+    <state width="1398" height="431" key="GridCell.Tab.0.center" timestamp="1619176305331">
       <screen x="0" y="25" width="1440" height="875" />
     </state>
-    <state width="1398" height="253" key="GridCell.Tab.0.center/0.25.1440.875@0.25.1440.875" timestamp="1618482795835" />
-    <state width="1398" height="253" key="GridCell.Tab.0.left" timestamp="1618482795834">
+    <state width="1398" height="431" key="GridCell.Tab.0.center/0.25.1440.875@0.25.1440.875" timestamp="1619176305331" />
+    <state width="1398" height="431" key="GridCell.Tab.0.left" timestamp="1619176305330">
       <screen x="0" y="25" width="1440" height="875" />
     </state>
-    <state width="1398" height="253" key="GridCell.Tab.0.left/0.25.1440.875@0.25.1440.875" timestamp="1618482795834" />
-    <state width="1398" height="253" key="GridCell.Tab.0.right" timestamp="1618482795835">
+    <state width="1398" height="431" key="GridCell.Tab.0.left/0.25.1440.875@0.25.1440.875" timestamp="1619176305330" />
+    <state width="1398" height="431" key="GridCell.Tab.0.right" timestamp="1619176305331">
       <screen x="0" y="25" width="1440" height="875" />
     </state>
-    <state width="1398" height="253" key="GridCell.Tab.0.right/0.25.1440.875@0.25.1440.875" timestamp="1618482795835" />
+    <state width="1398" height="431" key="GridCell.Tab.0.right/0.25.1440.875@0.25.1440.875" timestamp="1619176305331" />
     <state x="271" y="57" key="SettingsEditor" timestamp="1618480235835">
       <screen x="0" y="25" width="1440" height="875" />
     </state>

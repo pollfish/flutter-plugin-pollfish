@@ -1,6 +1,6 @@
 name: flutter_pollfish
 description: A Flutter plugin for rendering Pollfish surveys within an app
-version: 2.0.1
+version: 2.0.2
 homepage: https://www.pollfish.com/publisher/
 repository: https://github.com/pollfish/flutter-plugin-pollfish
 
