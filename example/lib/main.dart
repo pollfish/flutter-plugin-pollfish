@@ -5,9 +5,9 @@ import 'package:flutter_pollfish/flutter_pollfish.dart';
 
 void main() => runApp(MyApp());
 
-//Pollfish initialization options
+// Pollfish initialization options
 
-const String apiKey = '2ae349ab-30b8-4100-bc4d-b33b82e76519';
+const String apiKey = 'YOUR_API_KEY';
 const bool rewardMode = true;
 const int indPadding = 20;
 const int pollfishPosition = 5;

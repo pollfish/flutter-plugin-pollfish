@@ -227,11 +227,6 @@ public class FlutterPollfishPlugin implements FlutterPlugin, ActivityAware, Meth
 
     @Override
     public void onMethodCall(MethodCall call, @NotNull Result result) {
-        if (android.os.Build.VERSION.SDK_INT < 21) {
-            Log.d(TAG, "Pollfish surveys will not run on targets lower than 21");
-            return;
-        }
-
         switch (call.method) {
             case "init":
                 if (activity != null) {
