@@ -3,6 +3,9 @@
   <component name="AndroidLogFilters">
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="No Filters" />
   </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
   <component name="CMakeSettings">
     <configurations>
       <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
@@ -12,11 +15,6 @@
     <list default="true" id="fcf70e2d-8c48-4829-afda-3a5d8471dfbe" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/src/main/java/com/pollfish/flutterpollfish/FlutterPollfishPlugin.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/src/main/java/com/pollfish/flutterpollfish/FlutterPollfishPlugin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/example/.flutter-plugins-dependencies" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/example/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,7 +94,7 @@
       </method>
     </configuration>
   </component>
-  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -152,22 +150,22 @@
       <screen x="0" y="25" width="1440" height="875" />
     </state>
     <state x="278" y="36" key="CommitChangelistDialog2/0.25.1440.875@0.25.1440.875" timestamp="1618480623680" />
-    <state width="1398" height="333" key="GridCell.Tab.0.bottom" timestamp="1620292140266">
+    <state width="1398" height="333" key="GridCell.Tab.0.bottom" timestamp="1620724846419">
       <screen x="0" y="25" width="1440" height="875" />
     </state>
-    <state width="1398" height="333" key="GridCell.Tab.0.bottom/0.25.1440.875@0.25.1440.875" timestamp="1620292140266" />
-    <state width="1398" height="333" key="GridCell.Tab.0.center" timestamp="1620292140266">
+    <state width="1398" height="333" key="GridCell.Tab.0.bottom/0.25.1440.875@0.25.1440.875" timestamp="1620724846419" />
+    <state width="1398" height="333" key="GridCell.Tab.0.center" timestamp="1620724846418">
       <screen x="0" y="25" width="1440" height="875" />
     </state>
-    <state width="1398" height="333" key="GridCell.Tab.0.center/0.25.1440.875@0.25.1440.875" timestamp="1620292140266" />
-    <state width="1398" height="333" key="GridCell.Tab.0.left" timestamp="1620292140266">
+    <state width="1398" height="333" key="GridCell.Tab.0.center/0.25.1440.875@0.25.1440.875" timestamp="1620724846418" />
+    <state width="1398" height="333" key="GridCell.Tab.0.left" timestamp="1620724846418">
       <screen x="0" y="25" width="1440" height="875" />
     </state>
-    <state width="1398" height="333" key="GridCell.Tab.0.left/0.25.1440.875@0.25.1440.875" timestamp="1620292140266" />
-    <state width="1398" height="333" key="GridCell.Tab.0.right" timestamp="1620292140266">
+    <state width="1398" height="333" key="GridCell.Tab.0.left/0.25.1440.875@0.25.1440.875" timestamp="1620724846418" />
+    <state width="1398" height="333" key="GridCell.Tab.0.right" timestamp="1620724846418">
       <screen x="0" y="25" width="1440" height="875" />
     </state>
-    <state width="1398" height="333" key="GridCell.Tab.0.right/0.25.1440.875@0.25.1440.875" timestamp="1620292140266" />
+    <state width="1398" height="333" key="GridCell.Tab.0.right/0.25.1440.875@0.25.1440.875" timestamp="1620724846418" />
     <state x="271" y="57" key="SettingsEditor" timestamp="1618480235835">
       <screen x="0" y="25" width="1440" height="875" />
     </state>
