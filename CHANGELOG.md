@@ -79,3 +79,7 @@
 ## 2.0.5
 
 * Updated with Pollfish Android SDK v6.1.1
+
+## 2.0.6
+
+* Updated with Pollfish Android SDK v6.1.2 and Pollfish iOS SDK v6.0.1
