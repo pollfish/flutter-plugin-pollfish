@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name             = 'flutter_pollfish'
-  s.version          = '2.0.6'
+  s.version          = '3.0.0'
   s.summary          = 'A Flutter plugin for rendering Pollfish surveys within an app'
   s.description      = <<-DESC
 A  Flutter plugin for rendering Pollfish surveys within an app
