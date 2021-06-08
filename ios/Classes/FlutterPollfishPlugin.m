@@ -26,35 +26,41 @@ FlutterMethodChannel *_channel_pollfish;
     } else if ([@"hide" isEqualToString:call.method]) {
         [Pollfish hide];
         return;
+    } else if ([@"isPollfishPresent" isEqualToString: call.method]) {
+        result([NSNumber numberWithBool:[Pollfish isPollfishPresent]]);
+        return;
+    } else if ([@"isPollfishPanelOpen" isEqualToString: call.method]) {
+        result([NSNumber numberWithBool:[Pollfish isPollfishPanelOpen]]);
+        return;
     } else {
         result(FlutterMethodNotImplemented);
     }
 }
 
-- (void)callInitialize:(FlutterMethodCall *)call result:(FlutterResult)result {
-
-    NSString *api_key = (NSString *) call.arguments[@"api_key"];
+- (void)callInitialize:(FlutterMethodCall *) call result:(FlutterResult) result {
+    NSString *apiKey = (NSString *) call.arguments[@"apiKey"];
     
-    if (api_key == [NSNull null] || [api_key length] == 0) {
+    if (apiKey == nil || [apiKey length] == 0) {
         result([FlutterError errorWithCode:@"no_api_key"
                                    message:@"a non-empty Pollfish API Key was not provided"
                                    details:nil]);
         return;
     }
 
-    __block int pollfishPosition = 0;
-    __block int indPadding = 50;
+    __block int indicatorPosition = 0;
+    __block int indicatorPadding = 8;
     __block BOOL rewardMode = false;
     __block BOOL releaseMode = false;
     __block BOOL offerwallMode = false;
     __block NSString *requestUUID = nil;
+    __block NSDictionary *userProperties = nil;
     
-    if (call.arguments[@"pollfishPosition"] != [NSNull null]) {
-        pollfishPosition = (int) [call.arguments[@"pollfishPosition"]integerValue];
+    if (call.arguments[@"indicatorPosition"] != [NSNull null]) {
+        indicatorPosition = (int) [call.arguments[@"indicatorPosition"] integerValue];
     }
 
-    if (call.arguments[@"indPadding"] != [NSNull null]) {
-        indPadding  = (int) [call.arguments[@"indPadding"] integerValue];
+    if (call.arguments[@"indicatorPadding"] != [NSNull null]) {
+        indicatorPadding = (int) [call.arguments[@"indicatorPadding"] integerValue];
     }
 
     if (call.arguments[@"releaseMode"] != [NSNull null]) {
@@ -62,53 +68,64 @@ FlutterMethodChannel *_channel_pollfish;
     }
 
     if (call.arguments[@"rewardMode"] != [NSNull null]) {
-        NSLog(@"rewardMode is: %@", call.arguments[@"rewardMode"]);
         rewardMode = (BOOL)[call.arguments[@"rewardMode"] boolValue];
-        NSLog(@"rewardMode is: %d",rewardMode);
     }
 
     if (call.arguments[@"request_uuid"] != [NSNull null]) {
-        requestUUID = call.arguments[@"request_uuid"];
+        requestUUID = call.arguments[@"requestuUUID"];
     }
 
     if (call.arguments[@"offerwallMode"] != [NSNull null]) {
-        offerwallMode = (BOOL)[call.arguments[@"offerwallMode"]boolValue];
+        offerwallMode = (BOOL)[call.arguments[@"offerwallMode"] boolValue];
+    }
+    
+    if (call.arguments[@"userProperties"] != [NSNull null]) {
+        userProperties = (NSDictionary *) call.arguments[@"userProperties"];
     }
 
-    PollfishParams *params = [[PollfishParams alloc] init:api_key];
+    PollfishParams *params = [[PollfishParams alloc] init:apiKey];
 
-    [params indicatorPosition: (IndicatorPosition) pollfishPosition];
-    [params indicatorPadding: indPadding];
+    [params indicatorPosition: (IndicatorPosition) indicatorPosition];
+    [params indicatorPadding: indicatorPadding];
     [params releaseMode: releaseMode];
     [params rewardMode: rewardMode];
     [params offerwallMode: offerwallMode];
     [params requestUUID: requestUUID];
     [params platform: PlatformFlutter];
-
-    NSLog(@"pollfishPosition is: %d", pollfishPosition);
-    NSLog(@"indicatorPadding is: %d", indPadding);
-    NSLog(@"releaseMode is: %d", releaseMode);
-    NSLog(@"offerwallMode is: %d", offerwallMode);
-    NSLog(@"rewardMode is: %d", rewardMode);
-    NSLog(@"requestUUID is: %@", requestUUID);
+    
+    UserProperties *userPropertiesBuilder = [[UserProperties alloc] init];
+        
+    [userProperties enumerateKeysAndObjectsUsingBlock:^(id key, id object, BOOL *stop) {
+        [userPropertiesBuilder customAttribute:object forKey:key];
+    }];
+    
+    [params userProperties:userPropertiesBuilder];
 
     [Pollfish initWith:params delegate: self];
 }
 
+- (NSDictionary *)getDictionaryFrom:(SurveyInfo *) surveyInfo
+{
+    if (surveyInfo == nil) {
+        return nil;
+    }
+    
+    NSDictionary * payload = @{
+        @"surveyCPA" : (surveyInfo.cpa ?: [NSNull null]),
+        @"surveyIR" : (surveyInfo.ir ?: [NSNull null]),
+        @"surveyLOI" : (surveyInfo.loi ?: [NSNull null]),
+        @"rewardValue" : (surveyInfo.rewardValue ?: [NSNull null]),
+        @"remainingCompletes" : (surveyInfo.remainingCompletes ?: [NSNull null]),
+        @"surveyClass" : (surveyInfo.surveyClass ?: [NSNull null]),
+        @"rewardName" : (surveyInfo.rewardName ?: [NSNull null])};
+    
+    return payload;
+}
+
 - (void) pollfishSurveyCompletedWithSurveyInfo:(SurveyInfo *)surveyInfo
 {
-    int surveyPrice = [[surveyInfo cpa] intValue];
-    int surveyIR = [[surveyInfo ir] intValue];
-    int surveyLOI = [[surveyInfo loi] intValue];
-
-    NSString *surveyClass = [surveyInfo surveyClass];
-
-    NSString *rewardName = [surveyInfo rewardName];
-    int rewardValue = [[surveyInfo rewardValue] intValue];
-    
-    const char *result = [[NSString stringWithFormat:@"%d,%d,%d,%@,%@,%d", surveyPrice, surveyIR, surveyLOI, surveyClass, rewardName, rewardValue] UTF8String];
-    
-    [_channel_pollfish invokeMethod:@"pollfishSurveyCompleted" arguments:[NSString stringWithFormat:@"%s", result]];
+    [_channel_pollfish invokeMethod:@"pollfishSurveyCompleted"
+                          arguments:[self getDictionaryFrom:surveyInfo]];
 }
 
 - (void)pollfishOpened
@@ -123,25 +140,8 @@ FlutterMethodChannel *_channel_pollfish;
 
 - (void) pollfishSurveyReceivedWithSurveyInfo:(SurveyInfo *)surveyInfo
 {
-
-    if(surveyInfo != nil){
-    
-        int surveyPrice = [[surveyInfo cpa] intValue];
-        int surveyIR = [[surveyInfo ir] intValue];
-        int surveyLOI = [[surveyInfo loi] intValue];
-
-        NSString *surveyClass = [surveyInfo surveyClass];
-
-        NSString *rewardName = [surveyInfo rewardName];
-        int rewardValue = [[surveyInfo rewardValue] intValue];
-    
-        const char *result = [[NSString stringWithFormat:@"%d,%d,%d,%@,%@,%d", surveyPrice, surveyIR, surveyLOI, surveyClass, rewardName, rewardValue] UTF8String];
-
-        [_channel_pollfish invokeMethod:@"pollfishSurveyReceived" arguments:[NSString stringWithFormat:@"%s", result]];
-
-    } else {
-        [_channel_pollfish invokeMethod:@"pollfishSurveyReceived" arguments:@""];
-    }
+    [_channel_pollfish invokeMethod:@"pollfishSurveyReceived"
+                          arguments:[self getDictionaryFrom:surveyInfo]];
 }
 
 - (void)pollfishUserNotEligible
@@ -158,6 +158,5 @@ FlutterMethodChannel *_channel_pollfish;
 {
     [_channel_pollfish invokeMethod:@"pollfishSurveyNotAvailable" arguments:nil];
 }
-
 
 @end

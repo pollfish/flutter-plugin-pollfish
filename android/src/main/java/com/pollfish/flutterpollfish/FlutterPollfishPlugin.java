@@ -9,6 +9,7 @@ import com.pollfish.Pollfish;
 import com.pollfish.builder.Params;
 import com.pollfish.builder.Platform;
 import com.pollfish.builder.Position;
+import com.pollfish.builder.UserProperties;
 import com.pollfish.callback.PollfishClosedListener;
 import com.pollfish.callback.PollfishOpenedListener;
 import com.pollfish.callback.PollfishSurveyCompletedListener;
@@ -20,6 +21,9 @@ import com.pollfish.callback.SurveyInfo;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import io.flutter.embedding.engine.plugins.FlutterPlugin;
 import io.flutter.embedding.engine.plugins.activity.ActivityAware;
@@ -60,101 +64,110 @@ public class FlutterPollfishPlugin implements FlutterPlugin, ActivityAware, Meth
     }
 
     @Override
-    public void onDetachedFromActivityForConfigChanges() {}
+    public void onDetachedFromActivityForConfigChanges() {
+    }
 
     @Override
-    public void onReattachedToActivityForConfigChanges(@NonNull ActivityPluginBinding binding) {}
+    public void onReattachedToActivityForConfigChanges(@NonNull ActivityPluginBinding binding) {
+    }
 
     @Override
     public void onDetachedFromActivity() {
         activity = null;
     }
 
+    private Map<String, Object> getMapFromSurveyInfo(SurveyInfo surveyInfo) {
+        if (surveyInfo == null) {
+            return null;
+        }
+
+        Map<String, Object> payload = new HashMap<>();
+
+        if (surveyInfo.getSurveyCPA() != null) {
+            payload.put("surveyCPA", surveyInfo.getSurveyCPA());
+        }
+
+        if (surveyInfo.getSurveyLOI() != null) {
+            payload.put("surveyLOI", surveyInfo.getSurveyLOI());
+        }
+
+        if (surveyInfo.getSurveyIR() != null) {
+            payload.put("surveyIR", surveyInfo.getSurveyIR());
+        }
+
+        if (surveyInfo.getSurveyClass() != null) {
+            payload.put("surveyClass", surveyInfo.getSurveyClass());
+        }
+
+        if (surveyInfo.getRewardName() != null) {
+            payload.put("rewardName", surveyInfo.getRewardName());
+        }
+
+        if (surveyInfo.getRewardValue() != null) {
+            payload.put("rewardValue", surveyInfo.getRewardValue());
+        }
+
+        if (surveyInfo.getRemainingCompletes() != null) {
+            payload.put("remainingCompletes", surveyInfo.getRemainingCompletes());
+        }
+
+        return payload;
+    }
+
     private void initPollfish(final Activity activity,
                               final String apiKey,
-                              final int p,
-                              final int indPadding,
+                              final int indicatorPosition,
+                              final int indicatorPadding,
                               final boolean releaseMode,
                               final boolean rewardMode,
                               final boolean offerwallMode,
-                              final String request_uuid) {
+                              final String requestUUID,
+                              Map<String, Object> userProperties) {
 
-        final Position position = Position.values()[p];
+        final Position position = Position.values()[indicatorPosition];
 
         Params.Builder paramsBuilder = new Params.Builder(apiKey)
                 .indicatorPosition(position)
-                .indicatorPadding(indPadding)
+                .indicatorPadding(indicatorPadding)
                 .pollfishSurveyCompletedListener(new PollfishSurveyCompletedListener() {
                     @Override
                     public void onPollfishSurveyCompleted(@NotNull SurveyInfo surveyInfo) {
-                        if (surveyInfo != null) {
-
-                            Log.d(TAG, "onPollfishSurveyCompleted (CPA: " + surveyInfo.getSurveyCPA() + ", IR: " + surveyInfo.getSurveyIR() + ", LOI: " + surveyInfo.getSurveyLOI() + ", SurveyClass: " + surveyInfo.getSurveyClass() + ", RewardName: " + surveyInfo.getRewardName() + ", RewardValue: " + surveyInfo.getRewardValue() + ")");
-
-                            channel.invokeMethod("pollfishSurveyCompleted", surveyInfo.getSurveyCPA() + "," + surveyInfo.getSurveyIR() + "," + surveyInfo.getSurveyLOI() + "," + surveyInfo.getSurveyClass() + "," + surveyInfo.getRewardName() + "," + surveyInfo.getRewardValue());
-
-                        } else {
-
-                            Log.d(TAG, "onPollfishSurveyCompleted");
-
-                            channel.invokeMethod("pollfishSurveyCompleted", "");
-                        }
+                        channel.invokeMethod("pollfishSurveyCompleted", getMapFromSurveyInfo(surveyInfo));
                     }
                 })
                 .pollfishSurveyReceivedListener(new PollfishSurveyReceivedListener() {
                     @Override
                     public void onPollfishSurveyReceived(@Nullable SurveyInfo surveyInfo) {
-                        if (surveyInfo != null) {
-
-                            Log.d(TAG, "onPollfishSurveyReceived (CPA: " + surveyInfo.getSurveyCPA() + ", IR: " + surveyInfo.getSurveyIR() + ", LOI: " + surveyInfo.getSurveyLOI() + ", SurveyClass: " + surveyInfo.getSurveyClass() + ", RewardName: " + surveyInfo.getRewardName() + ", RewardValue: " + surveyInfo.getRewardValue() + ")");
-
-                            channel.invokeMethod("pollfishSurveyReceived", surveyInfo.getSurveyCPA() + "," + surveyInfo.getSurveyIR() + "," + surveyInfo.getSurveyLOI() + "," + surveyInfo.getSurveyClass() + "," + surveyInfo.getRewardName() + "," + surveyInfo.getRewardValue());
-
-                        } else {
-
-                            Log.d(TAG, "onPollfishSurveyReceived");
-
-                            channel.invokeMethod("pollfishSurveyReceived", "");
-                        }
+                        channel.invokeMethod("pollfishSurveyReceived", getMapFromSurveyInfo(surveyInfo));
                     }
                 })
                 .pollfishClosedListener(new PollfishClosedListener() {
                     @Override
                     public void onPollfishClosed() {
-                        Log.d(TAG, "onPollfishClosed");
-
                         channel.invokeMethod("pollfishClosed", null);
                     }
                 })
                 .pollfishOpenedListener(new PollfishOpenedListener() {
                     @Override
                     public void onPollfishOpened() {
-                        Log.d(TAG, "onPollfishOpened");
-
                         channel.invokeMethod("pollfishOpened", null);
                     }
                 })
                 .pollfishUserNotEligibleListener(new PollfishUserNotEligibleListener() {
                     @Override
                     public void onUserNotEligible() {
-                        Log.d(TAG, "onUserNotEligible");
-
                         channel.invokeMethod("pollfishUserNotEligible", null);
                     }
                 })
                 .pollfishUserRejectedSurveyListener(new PollfishUserRejectedSurveyListener() {
                     @Override
                     public void onUserRejectedSurvey() {
-                        Log.d(TAG, "onUserRejectedSurvey");
-
                         channel.invokeMethod("pollfishUserRejectedSurvey", null);
                     }
                 })
                 .pollfishSurveyNotAvailableListener(new PollfishSurveyNotAvailableListener() {
                     @Override
                     public void onPollfishSurveyNotAvailable() {
-                        Log.d(TAG, "onPollfishSurveyNotAvailable");
-
                         channel.invokeMethod("pollfishSurveyNotAvailable", null);
                     }
                 })
@@ -163,9 +176,21 @@ public class FlutterPollfishPlugin implements FlutterPlugin, ActivityAware, Meth
                 .platform(Platform.FLUTTER)
                 .offerwallMode(offerwallMode);
 
-        if (request_uuid != null) {
-            if (request_uuid.trim().length() > 0) {
-                paramsBuilder.requestUUID(request_uuid);
+        if (userProperties != null && !userProperties.isEmpty()) {
+            UserProperties.Builder userPropertiesBuilder = new UserProperties.Builder();
+
+            for (String s : userProperties.keySet()) {
+                if (userProperties.get(s) != null && userProperties.get(s) instanceof String) {
+                    userPropertiesBuilder.customAttribute(s, (String) userProperties.get(s));
+                }
+            }
+
+            paramsBuilder.userProperties(userPropertiesBuilder.build());
+        }
+
+        if (requestUUID != null) {
+            if (requestUUID.trim().length() > 0) {
+                paramsBuilder.requestUUID(requestUUID);
             }
         }
 
@@ -173,56 +198,57 @@ public class FlutterPollfishPlugin implements FlutterPlugin, ActivityAware, Meth
     }
 
     private void exctractPollfishParams(Activity activity, MethodCall call, Result result) {
+        String apiKey = null;
 
-        String api_key = null;
-
-        if (call.argument("api_key") != null) {
-            api_key = call.argument("api_key");
+        if (call.argument("apiKey") != null) {
+            apiKey = call.argument("apiKey");
         }
 
-        if (api_key == null) {
-            result.error("no_api_key", "a null api_key was provided", null);
+        if (apiKey == null) {
+            result.error("no_api_key", "a null apiKey was provided", null);
             return;
         }
 
         int pollfishPosition = 0;
-        int indPadding = 50;
+        int indicatorPadding = 50;
         boolean releaseMode = false;
         boolean rewardMode = false;
         boolean offerwallMode = false;
-        String request_uuid = null;
+        String requestUUID = null;
+        Map<String, Object> userProperties = null;
 
-        if (call.argument("pollfishPosition") != null) {
-            pollfishPosition = call.argument("pollfishPosition");
+        if (call.argument("indicatorPosition") != null) {
+            pollfishPosition = call.argument("indicatorPosition");
         }
-        if (call.argument("indPadding") != null) {
-            indPadding = call.argument("indPadding");
+
+        if (call.argument("indicatorPadding") != null) {
+            indicatorPadding = call.argument("indicatorPadding");
         }
+
         if (call.argument("releaseMode") != null) {
             releaseMode = call.argument("releaseMode");
         }
+
         if (call.argument("rewardMode") != null) {
             rewardMode = call.argument("rewardMode");
         }
+
         if (call.argument("offerwallMode") != null) {
             offerwallMode = call.argument("offerwallMode");
         }
 
-        if (call.argument("request_uuid") != null) {
-            request_uuid = call.argument("request_uuid");
+        if (call.argument("requestUUID") != null) {
+            requestUUID = call.argument("requestUUID");
         }
 
-        Log.d(TAG, "api_key: " + api_key);
-        Log.d(TAG, "pollfishPosition: " + pollfishPosition);
-        Log.d(TAG, "indPadding: " + indPadding);
-        Log.d(TAG, "releaseMode: " + releaseMode);
-        Log.d(TAG, "rewardMode: " + rewardMode);
-        Log.d(TAG, "offerwallMode: " + offerwallMode);
-        Log.d(TAG, "request_uuid: " + request_uuid);
+        if (call.argument("userProperties") != null) {
+            userProperties = call.argument("userProperties");
+        }
 
         if (binding != null)
+            initPollfish(activity, apiKey, pollfishPosition, indicatorPadding, releaseMode, rewardMode, offerwallMode, requestUUID, userProperties);
 
-        initPollfish(activity, api_key, pollfishPosition, indPadding, releaseMode, rewardMode, offerwallMode, request_uuid);
+        result.success(null);
     }
 
     @Override
@@ -230,22 +256,23 @@ public class FlutterPollfishPlugin implements FlutterPlugin, ActivityAware, Meth
         switch (call.method) {
             case "init":
                 if (activity != null) {
-                    Log.d(TAG, "Pollfish init");
-
                     exctractPollfishParams(activity, call, result);
                 }
-
                 break;
             case "show":
-                Log.d(TAG, "Pollfish show");
                 Pollfish.show();
-
                 break;
             case "hide":
-                Log.d(TAG, "Pollfish hide");
                 Pollfish.hide();
-
                 break;
+            case "isPollfishPresent":
+                result.success(Pollfish.isPollfishPresent());
+                break;
+            case "isPollfishPanelOpen":
+                result.success(Pollfish.isPollfishPanelOpen());
+                break;
+            default:
+                result.notImplemented();
         }
     }
 }

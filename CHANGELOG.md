@@ -83,3 +83,11 @@
 ## 2.0.6
 
 * Updated with Pollfish Android SDK v6.1.2 and Pollfish iOS SDK v6.0.1
+
+## 3.0.0
+
+* Migrated to Flutter Null-Safety
+* Added isPollfishPanelOpen public method 
+* Added isPollfishPresent public method
+* Added SurveyInfo object on onSurveyReceived and onSurveyCompleted listeners
+* Added indicator position enumeration

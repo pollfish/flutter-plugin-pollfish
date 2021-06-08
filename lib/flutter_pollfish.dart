@@ -4,13 +4,55 @@ import 'package:flutter/services.dart';
 
 // Pollfish notifications
 
-typedef void PollfishSurveyReceivedListener(String result);
-typedef void PollfishSurveyCompletedListener(String result);
+typedef void PollfishSurveyReceivedListener(SurveyInfo? surveyInfo);
+typedef void PollfishSurveyCompletedListener(SurveyInfo? surveyInfo);
 typedef void PollfishUserNotEligibleListener();
 typedef void PollfishUserRejectedSurveyListener();
 typedef void PollfishOpenedListener();
 typedef void PollfishClosedListener();
 typedef void PollfishSurveyNotAvailableListener();
+
+enum Position {
+  topLeft,
+  topRight,
+  middleLeft,
+  middleRight,
+  bottomLeft,
+  bottomRight
+}
+
+class SurveyInfo {
+  int? surveyCPA;
+  int? surveyIR;
+  int? surveyLOI;
+  String? surveyClass;
+  String? rewardName;
+  int? rewardValue;
+  int? remainingCompletes;
+
+  SurveyInfo(
+      {this.surveyCPA,
+      this.surveyIR,
+      this.surveyLOI,
+      this.surveyClass,
+      this.rewardName,
+      this.rewardValue,
+      this.remainingCompletes});
+
+  @override
+  String toString() {
+    return "SurveyInfo: \n" +
+        ((surveyCPA != null) ? "\tsurveyCPA: $surveyCPA\n" : "") +
+        ((surveyIR != null) ? "\tsurveyIR: $surveyIR\n" : "") +
+        ((surveyLOI != null) ? "\tsurveyLOI: $surveyLOI\n" : "") +
+        ((surveyClass != null) ? "\tsurveyClass: $surveyClass\n" : "") +
+        ((rewardName != null) ? "\trewardName: $rewardName\n" : "") +
+        ((rewardValue != null) ? "\trewardValue: $rewardValue\n" : "") +
+        ((remainingCompletes != null)
+            ? "\tremainingCompletes: $remainingCompletes\n"
+            : "");
+  }
+}
 
 class FlutterPollfish {
   /// The single shared instance of this plugin.
@@ -26,93 +68,119 @@ class FlutterPollfish {
     _channel.setMethodCallHandler(_platformCallHandler);
   }
 
-  static PollfishSurveyReceivedListener _pollfishSurveyReceivedListener;
-  static PollfishSurveyCompletedListener _pollfishSurveyCompletedListener;
-  static PollfishUserNotEligibleListener _pollfishUserNotEligibleListener;
-  static PollfishUserRejectedSurveyListener _pollfishUserRejectedSurveyListener;
-  static PollfishOpenedListener _pollfishOpenedListener;
-  static PollfishClosedListener _pollfishClosedListener;
-  static PollfishSurveyNotAvailableListener _pollfishSurveyNotAvailableListener;
+  static PollfishSurveyReceivedListener? _pollfishSurveyReceivedListener;
+  static PollfishSurveyCompletedListener? _pollfishSurveyCompletedListener;
+  static PollfishUserNotEligibleListener? _pollfishUserNotEligibleListener;
+  static PollfishUserRejectedSurveyListener?
+      _pollfishUserRejectedSurveyListener;
+  static PollfishOpenedListener? _pollfishOpenedListener;
+  static PollfishClosedListener? _pollfishClosedListener;
+  static PollfishSurveyNotAvailableListener?
+      _pollfishSurveyNotAvailableListener;
 
   Future<void> init(
-      {String apiKey,
-      int pollfishPosition,
-      int indPadding,
-      bool rewardMode,
-      bool releaseMode,
-      bool offerwallMode,
-      String requestUUID}) async {
-    assert(apiKey != null && apiKey.isNotEmpty);
-
-    print(' invokeMethod FlutterPollfish.init()... ');
+      {required String apiKey,
+      Position indicatorPosition = Position.topLeft,
+      int indicatorPadding = 8,
+      bool rewardMode = false,
+      bool releaseMode = false,
+      bool offerwallMode = false,
+      String? requestUUID,
+      Map<String, dynamic>? userProperties}) async {
+    assert(apiKey.isNotEmpty);
 
     return _channel.invokeMethod("init", <String, dynamic>{
-      'api_key': apiKey,
-      'pollfishPosition': pollfishPosition,
-      'indPadding': indPadding,
+      'apiKey': apiKey,
+      'indicatorPosition': indicatorPosition.index,
+      'indicatorPadding': indicatorPadding,
       'rewardMode': rewardMode,
       'releaseMode': releaseMode,
       'offerwallMode': offerwallMode,
-      'request_uuid': requestUUID,
+      'requestUUID': requestUUID,
+      'userProperties': userProperties,
     });
   }
 
   Future<void> show() {
-    print(' invokeMethod FlutterPollfish.show()... ');
     return _channel.invokeMethod('show');
   }
 
   Future<void> hide() {
-    print(' invokeMethod FlutterPollfish.hide()... ');
     return _channel.invokeMethod('hide');
   }
 
-  Future _platformCallHandler(MethodCall call) async {
-    print(
-        "FlutterPollfish _platformCallHandler call ${call.method} ${call.arguments}");
+  Future<bool> isPollfishPresent() {
+    return _channel
+        .invokeMethod<bool>('isPollfishPresent')
+        .then<bool>((bool? value) => value ?? false);
+  }
 
+  Future<bool> isPollfishPanelOpen() {
+    return _channel
+        .invokeMethod<bool>('isPollfishPanelOpen')
+        .then<bool>((bool? value) => value ?? false);
+  }
+
+  SurveyInfo? getSurveyInfoFromMap(dynamic map) {
+    if (map == null || map.isEmpty) {
+      return null;
+    }
+
+    return SurveyInfo(
+        surveyCPA: (map.containsKey("surveyCPA") && map["surveyCPA"] is int)
+            ? map["surveyCPA"]
+            : null,
+        surveyLOI: (map.containsKey("surveyLOI") && map["surveyLOI"] is int)
+            ? map["surveyLOI"]
+            : null,
+        surveyIR: (map.containsKey("surveyIR") && map["surveyIR"] is int)
+            ? map["surveyIR"]
+            : null,
+        surveyClass:
+            (map.containsKey("surveyClass") && map["surveyClass"] is String)
+                ? map["surveyClass"]
+                : null,
+        rewardName:
+            (map.containsKey("rewardName") && map["rewardName"] is String)
+                ? map["rewardName"]
+                : null,
+        rewardValue:
+            (map.containsKey("rewardValue") && map["rewardValue"] is int)
+                ? map["rewardValue"]
+                : null,
+        remainingCompletes: (map.containsKey("remainingCompletes") &&
+                map["remainingCompletes"] is int)
+            ? map["remainingCompletes"]
+            : null);
+  }
+
+  Future _platformCallHandler(MethodCall call) async {
     switch (call.method) {
       case "pollfishSurveyReceived":
-        _pollfishSurveyReceivedListener(call.arguments);
-        print("pollfishSurveyReceived");
-
+        _pollfishSurveyReceivedListener
+            ?.call(getSurveyInfoFromMap(call.arguments));
         break;
-
       case "pollfishSurveyCompleted":
-        _pollfishSurveyCompletedListener(call.arguments);
-        print("pollfishSurveyCompleted");
-
+        _pollfishSurveyCompletedListener
+            ?.call(getSurveyInfoFromMap(call.arguments));
         break;
-
       case "pollfishUserNotEligible":
-        _pollfishUserNotEligibleListener();
-        print("pollfishUserNotEligible");
-
+        _pollfishUserNotEligibleListener?.call();
         break;
-
       case "pollfishUserRejectedSurvey":
-        _pollfishUserRejectedSurveyListener();
-        print("pollfishUserRejectedSurvey");
-
+        _pollfishUserRejectedSurveyListener?.call();
         break;
       case "pollfishOpened":
-        _pollfishOpenedListener();
-        print("pollfishOpened");
-
+        _pollfishOpenedListener?.call();
         break;
       case "pollfishClosed":
-        _pollfishClosedListener();
-        print("pollfishClosed");
-
+        _pollfishClosedListener?.call();
         break;
       case "pollfishSurveyNotAvailable":
-        _pollfishSurveyNotAvailableListener();
-        print("pollfishSurveyNotAvailable");
-
+        _pollfishSurveyNotAvailableListener?.call();
         break;
-
       default:
-        print('Unknown method ${call.method} ');
+        print('Unknown method ${call.method}');
     }
   }
 
@@ -138,11 +206,21 @@ class FlutterPollfish {
       _pollfishOpenedListener = pollfishSurveyOpenedListener;
 
   void setPollfishClosedListener(
-      PollfishClosedListener pollfishSurveyClosedListener) =>
+          PollfishClosedListener pollfishSurveyClosedListener) =>
       _pollfishClosedListener = pollfishSurveyClosedListener;
 
   void setPollfishSurveyNotAvailableListener(
           PollfishSurveyNotAvailableListener
               pollfishSurveyNotAvailableListener) =>
       _pollfishSurveyNotAvailableListener = pollfishSurveyNotAvailableListener;
+
+  void removeListeners() {
+    _pollfishClosedListener = null;
+    _pollfishOpenedListener = null;
+    _pollfishSurveyNotAvailableListener = null;
+    _pollfishUserRejectedSurveyListener = null;
+    _pollfishUserNotEligibleListener = null;
+    _pollfishSurveyReceivedListener = null;
+    _pollfishSurveyCompletedListener = null;
+  }
 }
