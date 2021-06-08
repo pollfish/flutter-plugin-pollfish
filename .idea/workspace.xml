@@ -12,18 +12,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fcf70e2d-8c48-4829-afda-3a5d8471dfbe" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/CHANGELOG.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/src/main/java/com/pollfish/flutterpollfish/FlutterPollfishPlugin.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/src/main/java/com/pollfish/flutterpollfish/FlutterPollfishPlugin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/example/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/example/pubspec.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/test/widget_test.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Classes/FlutterPollfishPlugin.m" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Classes/FlutterPollfishPlugin.m" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/flutter_pollfish.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_pollfish.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
-    </list>
+    <list default="true" id="fcf70e2d-8c48-4829-afda-3a5d8471dfbe" name="Default" comment="Pollfish Flutter Plugin v3.0.0" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -119,6 +108,14 @@
       <workItem from="1619163507810" duration="109000" />
       <workItem from="1619189058040" duration="21000" />
     </task>
+    <task id="LOCAL-00001" summary="Pollfish Flutter Plugin v3.0.0">
+      <created>1623137019870</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1623137019870</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TodoView">
@@ -149,6 +146,8 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_pollfish" />
     </ignored-roots>
+    <MESSAGE value="Pollfish Flutter Plugin v3.0.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="Pollfish Flutter Plugin v3.0.0" />
   </component>
   <component name="WindowStateProjectService">
     <state x="533" y="182" key="#com.intellij.ide.util.MemberChooser" timestamp="1623068120348">
@@ -163,10 +162,10 @@
       <screen x="0" y="25" width="1440" height="875" />
     </state>
     <state x="100" y="125" width="1240" height="675" key="AVDManager/0.25.1440.875@0.25.1440.875" timestamp="1619174433553" />
-    <state x="278" y="36" key="CommitChangelistDialog2" timestamp="1618480623680">
+    <state x="278" y="36" key="CommitChangelistDialog2" timestamp="1623137019663">
       <screen x="0" y="25" width="1440" height="875" />
     </state>
-    <state x="278" y="36" key="CommitChangelistDialog2/0.25.1440.875@0.25.1440.875" timestamp="1618480623680" />
+    <state x="278" y="36" key="CommitChangelistDialog2/0.25.1440.875@0.25.1440.875" timestamp="1623137019663" />
     <state x="100" y="125" width="1240" height="675" key="DiffContextDialog" timestamp="1623135330424">
       <screen x="0" y="25" width="1440" height="875" />
     </state>
@@ -207,6 +206,10 @@
       <screen x="0" y="25" width="1440" height="875" />
     </state>
     <state x="271" y="57" key="SettingsEditor/0.25.1440.875@0.25.1440.875" timestamp="1618480235835" />
+    <state x="320" y="199" key="Vcs.Push.Dialog.v2" timestamp="1623137026028">
+      <screen x="0" y="25" width="1440" height="875" />
+    </state>
+    <state x="320" y="199" key="Vcs.Push.Dialog.v2/0.25.1440.875@0.25.1440.875" timestamp="1623137026028" />
     <state x="421" y="217" width="597" height="490" key="find.popup" timestamp="1622721460060">
       <screen x="0" y="25" width="1440" height="875" />
     </state>

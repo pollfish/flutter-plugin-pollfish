@@ -16,7 +16,7 @@ Pollfish Flutter Plugin v3.0.0 introduces a different API with added customizati
 
 <td>
 
-#### **Init** <br/>
+#### **Initialization** <br/>
 
 ```dart
 FlutterPollfish.instance.init(
