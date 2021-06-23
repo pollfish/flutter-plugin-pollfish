@@ -4,7 +4,7 @@ A plugin for [Flutter](https://flutter.io) that supports rendering surveys using
 
 *Note*: Pollfish iOS SDK utilizes Apple's Advertising ID (IDFA) to identify and retarget users with Pollfish surveys. As of iOS 14 you should initialize Pollfish Flutter plugin in iOS only if the relevant IDFA permission was granted by the user
 
-Pollfish Flutter Plugin v3.0.0 introduces a different API with added customization options during initialization, new exposed methods and slighly different callbacks. If you have already integrated Pollfish Flutter Plugin < v3.0.0 in you app, please take some time reading the migration guide below.
+Since Pollfish Flutter Plugin v3.0.0 a different API was introduced with added customization options during initialization, new exposed methods and slighly different callbacks. If you have already integrated Pollfish Flutter Plugin v3.0.0 or lower in you app, please take some time reading the migration guide below.
 
 <details><summary>➤ <b>Kotlin</b> (Click to expand)</summary>
 <table>

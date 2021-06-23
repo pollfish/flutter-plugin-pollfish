@@ -91,3 +91,7 @@
 * Added isPollfishPresent public method
 * Added SurveyInfo object on onSurveyReceived and onSurveyCompleted listeners
 * Added indicator position enumeration
+
+## 3.0.1
+
+* Updated with Pollfish Android SDK v6.1.3 and Pollfish iOS SDK v6.0.2
