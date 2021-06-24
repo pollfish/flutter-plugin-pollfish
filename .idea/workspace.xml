@@ -12,12 +12,10 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fcf70e2d-8c48-4829-afda-3a5d8471dfbe" name="Default" comment="Pollfish Flutter Plugin v3.0.0">
+    <list default="true" id="fcf70e2d-8c48-4829-afda-3a5d8471dfbe" name="Default" comment="Pollfish Flutter Plugin v3.0.1">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/CHANGELOG.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/example/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/example/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flutter_pollfish.iml" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_pollfish.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ios/flutter_pollfish.podspec" beforeDir="false" afterPath="$PROJECT_DIR$/ios/flutter_pollfish.podspec" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
@@ -41,6 +39,12 @@
     <option name="BRANCH" value="master" />
   </component>
   <component name="Git.Settings">
+    <option name="PUSH_TAGS">
+      <GitPushTagMode>
+        <option name="argument" value="--tags" />
+        <option name="title" value="All" />
+      </GitPushTagMode>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectCodeStyleSettingsMigration">
@@ -140,7 +144,14 @@
       <option name="project" value="LOCAL" />
       <updated>1623137329750</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Pollfish Flutter Plugin v3.0.1">
+      <created>1624433997913</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1624433997913</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TodoView">
@@ -172,7 +183,8 @@
       <path value="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_pollfish" />
     </ignored-roots>
     <MESSAGE value="Pollfish Flutter Plugin v3.0.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="Pollfish Flutter Plugin v3.0.0" />
+    <MESSAGE value="Pollfish Flutter Plugin v3.0.1" />
+    <option name="LAST_COMMIT_MESSAGE" value="Pollfish Flutter Plugin v3.0.1" />
   </component>
   <component name="WindowStateProjectService">
     <state x="533" y="182" key="#com.intellij.ide.util.MemberChooser" timestamp="1623068120348">
@@ -187,30 +199,30 @@
       <screen x="0" y="25" width="1440" height="875" />
     </state>
     <state x="100" y="125" width="1240" height="675" key="AVDManager/0.25.1440.875@0.25.1440.875" timestamp="1619174433553" />
-    <state x="278" y="36" key="CommitChangelistDialog2" timestamp="1623137329616">
+    <state x="278" y="36" key="CommitChangelistDialog2" timestamp="1624433997741">
       <screen x="0" y="25" width="1440" height="875" />
     </state>
-    <state x="278" y="36" key="CommitChangelistDialog2/0.25.1440.875@0.25.1440.875" timestamp="1623137329616" />
+    <state x="278" y="36" key="CommitChangelistDialog2/0.25.1440.875@0.25.1440.875" timestamp="1624433997741" />
     <state x="100" y="125" width="1240" height="675" key="DiffContextDialog" timestamp="1623135330424">
       <screen x="0" y="25" width="1440" height="875" />
     </state>
     <state x="100" y="125" width="1240" height="675" key="DiffContextDialog/0.25.1440.875@0.25.1440.875" timestamp="1623135330424" />
-    <state width="1398" height="277" key="GridCell.Tab.0.bottom" timestamp="1624433784429">
+    <state width="1398" height="277" key="GridCell.Tab.0.bottom" timestamp="1624528857247">
       <screen x="0" y="25" width="1440" height="875" />
     </state>
-    <state width="1398" height="277" key="GridCell.Tab.0.bottom/0.25.1440.875@0.25.1440.875" timestamp="1624433784429" />
-    <state width="1398" height="277" key="GridCell.Tab.0.center" timestamp="1624433784428">
+    <state width="1398" height="277" key="GridCell.Tab.0.bottom/0.25.1440.875@0.25.1440.875" timestamp="1624528857247" />
+    <state width="1398" height="277" key="GridCell.Tab.0.center" timestamp="1624528857246">
       <screen x="0" y="25" width="1440" height="875" />
     </state>
-    <state width="1398" height="277" key="GridCell.Tab.0.center/0.25.1440.875@0.25.1440.875" timestamp="1624433784428" />
-    <state width="1398" height="277" key="GridCell.Tab.0.left" timestamp="1624433784428">
+    <state width="1398" height="277" key="GridCell.Tab.0.center/0.25.1440.875@0.25.1440.875" timestamp="1624528857246" />
+    <state width="1398" height="277" key="GridCell.Tab.0.left" timestamp="1624528857245">
       <screen x="0" y="25" width="1440" height="875" />
     </state>
-    <state width="1398" height="277" key="GridCell.Tab.0.left/0.25.1440.875@0.25.1440.875" timestamp="1624433784428" />
-    <state width="1398" height="277" key="GridCell.Tab.0.right" timestamp="1624433784429">
+    <state width="1398" height="277" key="GridCell.Tab.0.left/0.25.1440.875@0.25.1440.875" timestamp="1624528857245" />
+    <state width="1398" height="277" key="GridCell.Tab.0.right" timestamp="1624528857246">
       <screen x="0" y="25" width="1440" height="875" />
     </state>
-    <state width="1398" height="277" key="GridCell.Tab.0.right/0.25.1440.875@0.25.1440.875" timestamp="1624433784429" />
+    <state width="1398" height="277" key="GridCell.Tab.0.right/0.25.1440.875@0.25.1440.875" timestamp="1624528857246" />
     <state width="1398" height="264" key="GridCell.Tab.1.bottom" timestamp="1623137379148">
       <screen x="0" y="25" width="1440" height="875" />
     </state>
@@ -231,14 +243,18 @@
       <screen x="0" y="25" width="1440" height="875" />
     </state>
     <state x="271" y="57" key="SettingsEditor/0.25.1440.875@0.25.1440.875" timestamp="1618480235835" />
-    <state x="320" y="199" key="Vcs.Push.Dialog.v2" timestamp="1623137331294">
+    <state x="320" y="199" key="Vcs.Push.Dialog.v2" timestamp="1624434031748">
       <screen x="0" y="25" width="1440" height="875" />
     </state>
-    <state x="320" y="199" key="Vcs.Push.Dialog.v2/0.25.1440.875@0.25.1440.875" timestamp="1623137331294" />
+    <state x="320" y="199" key="Vcs.Push.Dialog.v2/0.25.1440.875@0.25.1440.875" timestamp="1624434031748" />
     <state x="421" y="217" width="597" height="490" key="find.popup" timestamp="1622721460060">
       <screen x="0" y="25" width="1440" height="875" />
     </state>
     <state x="421" y="217" width="597" height="490" key="find.popup/0.25.1440.875@0.25.1440.875" timestamp="1622721460060" />
+    <state x="437" y="310" key="git4idea.ui.GitTagDialog" timestamp="1624434023151">
+      <screen x="0" y="25" width="1440" height="875" />
+    </state>
+    <state x="437" y="310" key="git4idea.ui.GitTagDialog/0.25.1440.875@0.25.1440.875" timestamp="1624434023151" />
     <state x="385" y="214" width="670" height="676" key="search.everywhere.popup" timestamp="1623081002660">
       <screen x="0" y="25" width="1440" height="875" />
     </state>
