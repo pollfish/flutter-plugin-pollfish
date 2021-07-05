@@ -99,3 +99,7 @@
 ## 3.0.2
 
 * Updated with Pollfish iOS SDK v6.0.3
+
+## 3.0.3
+
+* Updated with Pollfish iOS SDK v6.1.0

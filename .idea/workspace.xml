@@ -14,8 +14,7 @@
   <component name="ChangeListManager">
     <list default="true" id="fcf70e2d-8c48-4829-afda-3a5d8471dfbe" name="Default" comment="Pollfish Flutter Plugin v3.0.1">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/example/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flutter_pollfish.iml" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_pollfish.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/CHANGELOG.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ios/flutter_pollfish.podspec" beforeDir="false" afterPath="$PROJECT_DIR$/ios/flutter_pollfish.podspec" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
@@ -207,22 +206,22 @@
       <screen x="0" y="25" width="1440" height="875" />
     </state>
     <state x="100" y="125" width="1240" height="675" key="DiffContextDialog/0.25.1440.875@0.25.1440.875" timestamp="1623135330424" />
-    <state width="1398" height="277" key="GridCell.Tab.0.bottom" timestamp="1624528857247">
+    <state width="1398" height="277" key="GridCell.Tab.0.bottom" timestamp="1624530444248">
       <screen x="0" y="25" width="1440" height="875" />
     </state>
-    <state width="1398" height="277" key="GridCell.Tab.0.bottom/0.25.1440.875@0.25.1440.875" timestamp="1624528857247" />
-    <state width="1398" height="277" key="GridCell.Tab.0.center" timestamp="1624528857246">
+    <state width="1398" height="277" key="GridCell.Tab.0.bottom/0.25.1440.875@0.25.1440.875" timestamp="1624530444248" />
+    <state width="1398" height="277" key="GridCell.Tab.0.center" timestamp="1624530444246">
       <screen x="0" y="25" width="1440" height="875" />
     </state>
-    <state width="1398" height="277" key="GridCell.Tab.0.center/0.25.1440.875@0.25.1440.875" timestamp="1624528857246" />
-    <state width="1398" height="277" key="GridCell.Tab.0.left" timestamp="1624528857245">
+    <state width="1398" height="277" key="GridCell.Tab.0.center/0.25.1440.875@0.25.1440.875" timestamp="1624530444246" />
+    <state width="1398" height="277" key="GridCell.Tab.0.left" timestamp="1624530444246">
       <screen x="0" y="25" width="1440" height="875" />
     </state>
-    <state width="1398" height="277" key="GridCell.Tab.0.left/0.25.1440.875@0.25.1440.875" timestamp="1624528857245" />
-    <state width="1398" height="277" key="GridCell.Tab.0.right" timestamp="1624528857246">
+    <state width="1398" height="277" key="GridCell.Tab.0.left/0.25.1440.875@0.25.1440.875" timestamp="1624530444246" />
+    <state width="1398" height="277" key="GridCell.Tab.0.right" timestamp="1624530444247">
       <screen x="0" y="25" width="1440" height="875" />
     </state>
-    <state width="1398" height="277" key="GridCell.Tab.0.right/0.25.1440.875@0.25.1440.875" timestamp="1624528857246" />
+    <state width="1398" height="277" key="GridCell.Tab.0.right/0.25.1440.875@0.25.1440.875" timestamp="1624530444247" />
     <state width="1398" height="264" key="GridCell.Tab.1.bottom" timestamp="1623137379148">
       <screen x="0" y="25" width="1440" height="875" />
     </state>
