@@ -31,5 +31,5 @@ android {
 }
 
 dependencies {
-    implementation 'com.pollfish:pollfish-googleplay:6.1.3'
+    implementation 'com.pollfish:pollfish-googleplay:6.1.4'
 }

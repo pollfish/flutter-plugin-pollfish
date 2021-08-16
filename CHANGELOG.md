@@ -103,3 +103,11 @@
 ## 3.0.3
 
 * Updated with Pollfish iOS SDK v6.1.0
+
+## 3.0.4
+
+* Updated with Pollfish Android SDK v6.1.4 and Pollfish iOS SDK v6.2.0
+
+## 3.0.5
+
+* Updated with Pollfish iOS SDK v6.2.1
