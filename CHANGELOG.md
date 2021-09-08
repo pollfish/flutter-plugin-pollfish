@@ -111,3 +111,9 @@
 ## 3.0.5
 
 * Updated with Pollfish iOS SDK v6.2.1
+
+## 4.0.0
+
+* Updated with Pollfish iOS SDK v6.2.2 and Pollfish Android SDK v6.1.5
+* Added extra configuration parameters for rewardInfo, clickId and signature
+* Plugin requires two nullable apiKeys depending on the platform (Android & iOS)

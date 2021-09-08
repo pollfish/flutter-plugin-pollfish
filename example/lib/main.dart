@@ -7,12 +7,14 @@ void main() => runApp(MyApp());
 
 // Pollfish initialization options
 
-const String apiKey = 'YOUR_API_KEY';
+const String androidApiKey = 'ANDROID_API_KEY';
+const String iOSApiKey = 'IOS_API_KEY';
 const bool releaseMode = false;
 const int indicatorPadding = 20;
 const Position indicatorPosition = Position.middleRight;
 const String? requestUUID = null;
-const userProperties = <String, dynamic>{'gender': '1', 'education': '1'};
+const userProperties = {'gender': '1', 'education': '1'};
+const clickId = null;
 
 class MyApp extends StatefulWidget {
   @override
@@ -24,7 +26,6 @@ class _MyAppState extends State<MyApp> {
 
   bool _showButton = false;
   bool _completedSurvey = false;
-  bool _rewardMode = false;
   int _currentIndex = 0;
   int _cpa = 0;
 
@@ -47,14 +48,16 @@ class _MyAppState extends State<MyApp> {
     _completedSurvey = false;
 
     FlutterPollfish.instance.init(
-        apiKey: apiKey,
+        androidApiKey: androidApiKey,
+        iosApiKey: iOSApiKey,
         indicatorPosition: indicatorPosition,
         indicatorPadding: indicatorPadding,
-        rewardMode: _rewardMode,
+        rewardMode: (_currentIndex == 1 || _currentIndex == 2),
         releaseMode: releaseMode,
         offerwallMode: (_currentIndex == 2) ? true : false,
         requestUUID: requestUUID,
-        userProperties: userProperties);
+        userProperties: userProperties,
+        clickId: clickId);
 
     FlutterPollfish.instance
         .setPollfishSurveyReceivedListener(onPollfishSurveyReceived);
@@ -97,32 +100,32 @@ class _MyAppState extends State<MyApp> {
                         //Padding between these please
                         Text('$_logText\n'),
                         (((_currentIndex == 1) || (_currentIndex == 2)) &&
-                            _showButton &&
-                            !_completedSurvey)
+                                _showButton &&
+                                !_completedSurvey)
                             ? new RawMaterialButton(
-                          onPressed: () {
-                            FlutterPollfish.instance.show();
-                          },
-                          child: new Text(
-                              (_currentIndex == 1)
-                                  ? 'Complete a Survey and Earn $_cpa Credits'
-                                  : 'Offerwall - Take Surveys',
-                              style: new TextStyle(
-                                  color: Colors.white, fontSize: 16.0)),
-                          // You can add a Icon instead of text also, like below.
+                                onPressed: () {
+                                  FlutterPollfish.instance.show();
+                                },
+                                child: new Text(
+                                    (_currentIndex == 1)
+                                        ? 'Complete a Survey and Earn $_cpa Credits'
+                                        : 'Offerwall - Take Surveys',
+                                    style: new TextStyle(
+                                        color: Colors.white, fontSize: 16.0)),
+                                // You can add a Icon instead of text also, like below.
 
-                          shape: new RoundedRectangleBorder(),
-                          elevation: 2.0,
-                          fillColor: Colors.blue,
-                          padding: const EdgeInsets.all(15.0),
-                        )
+                                shape: new RoundedRectangleBorder(),
+                                elevation: 2.0,
+                                fillColor: Colors.blue,
+                                padding: const EdgeInsets.all(15.0),
+                              )
                             : (_currentIndex % 2 == 1 &&
-                            !_showButton &&
-                            _completedSurvey)
-                            ? Container(
-                          child: new Text('You earned $_cpa Credits'),
-                        )
-                            : Container()
+                                    !_showButton &&
+                                    _completedSurvey)
+                                ? Container(
+                                    child: new Text('You earned $_cpa Credits'),
+                                  )
+                                : Container()
                       ]))),
           bottomNavigationBar: BottomNavigationBar(
               onTap: onTabTapped,
@@ -145,11 +148,6 @@ class _MyAppState extends State<MyApp> {
   void onTabTapped(int index) {
     setState(() {
       _currentIndex = index;
-      if (_currentIndex == 0) {
-        _rewardMode = false;
-      } else {
-        _rewardMode = true;
-      }
     });
     initPollfish();
   }
@@ -166,13 +164,12 @@ class _MyAppState extends State<MyApp> {
 
   // Pollfish notification functions
 
-  void onPollfishSurveyReceived(SurveyInfo? surveyInfo) =>
-      setState(() {
+  void onPollfishSurveyReceived(SurveyInfo? surveyInfo) => setState(() {
         if (surveyInfo == null) {
-          _logText = 'Offerwall Ready'; // Offerwall
+          _logText = 'Offerwall Ready';
         } else {
           _logText =
-          'Survey Received: - ${surveyInfo.toString().replaceAll("\n", " ")}';
+              'Survey Received: - ${surveyInfo.toString().replaceAll("\n", " ")}';
           _cpa = surveyInfo.surveyCPA ?? 0;
         }
 
@@ -182,35 +179,30 @@ class _MyAppState extends State<MyApp> {
         _showButton = true;
       });
 
-  void onPollfishSurveyCompleted(SurveyInfo? surveyInfo) =>
-      setState(() {
+  void onPollfishSurveyCompleted(SurveyInfo? surveyInfo) => setState(() {
         _logText = 'Survey Completed: - ${surveyInfo.toString()}';
 
         print(_logText);
 
         if (_currentIndex == 1) {
-          // Rewarded Survey - Do not hide on Offerwall
           _showButton = false;
           _completedSurvey = true;
         }
       });
 
-  void onPollfishOpened() =>
-      setState(() {
+  void onPollfishOpened() => setState(() {
         _logText = 'Survey Panel Open';
 
         print(_logText);
       });
 
-  void onPollfishClosed() =>
-      setState(() {
+  void onPollfishClosed() => setState(() {
         _logText = 'Survey Panel Closed';
 
         print(_logText);
       });
 
-  void onPollfishSurveyNotAvailable() =>
-      setState(() {
+  void onPollfishSurveyNotAvailable() => setState(() {
         _logText = 'Survey Not Available';
 
         print(_logText);
@@ -219,27 +211,23 @@ class _MyAppState extends State<MyApp> {
         _completedSurvey = false;
       });
 
-  void onPollfishUserRejectedSurvey() =>
-      setState(() {
+  void onPollfishUserRejectedSurvey() => setState(() {
         _logText = 'User Rejected Survey';
 
         print(_logText);
 
         if (_currentIndex == 1) {
-          // Rewarded Survey - Do not hide on Offerwall
           _showButton = false;
           _completedSurvey = false;
         }
       });
 
-  void onPollfishUserNotEligible() =>
-      setState(() {
+  void onPollfishUserNotEligible() => setState(() {
         _logText = 'User Not Eligible';
 
         print(_logText);
 
         if (_currentIndex == 1) {
-          // Rewarded Survey - Do not hide on Offerwall
           _showButton = false;
           _completedSurvey = false;
         }

@@ -21,6 +21,20 @@ enum Position {
   bottomRight
 }
 
+class RewardInfo {
+  String rewardName;
+  double rewardConversion;
+
+  RewardInfo(this.rewardName, this.rewardConversion);
+
+  Map toMap() {
+    return {
+      'rewardName': this.rewardName,
+      'rewardConversion': this.rewardConversion
+    };
+  }
+}
+
 class SurveyInfo {
   int? surveyCPA;
   int? surveyIR;
@@ -79,18 +93,22 @@ class FlutterPollfish {
       _pollfishSurveyNotAvailableListener;
 
   Future<void> init(
-      {required String apiKey,
+      {required String? androidApiKey,
+      required String? iosApiKey,
       Position indicatorPosition = Position.topLeft,
       int indicatorPadding = 8,
       bool rewardMode = false,
       bool releaseMode = false,
       bool offerwallMode = false,
       String? requestUUID,
-      Map<String, dynamic>? userProperties}) async {
-    assert(apiKey.isNotEmpty);
+      Map<String, dynamic>? userProperties,
+      String? clickId,
+      String? signature,
+      RewardInfo? rewardInfo}) async {
 
     return _channel.invokeMethod("init", <String, dynamic>{
-      'apiKey': apiKey,
+      'androidApiKey': androidApiKey,
+      'iOSApiKey': iosApiKey,
       'indicatorPosition': indicatorPosition.index,
       'indicatorPadding': indicatorPadding,
       'rewardMode': rewardMode,
@@ -98,6 +116,9 @@ class FlutterPollfish {
       'offerwallMode': offerwallMode,
       'requestUUID': requestUUID,
       'userProperties': userProperties,
+      'clickId': clickId,
+      'signature': signature,
+      'rewardInfo': rewardInfo?.toMap()
     });
   }
 

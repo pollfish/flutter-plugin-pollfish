@@ -12,7 +12,23 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fcf70e2d-8c48-4829-afda-3a5d8471dfbe" name="Default" comment="Pollfish Flutter Plugin v3.0.1" />
+    <list default="true" id="fcf70e2d-8c48-4829-afda-3a5d8471dfbe" name="Default" comment="Pollfish Flutter Plugin v3.0.1">
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_for_Android.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_for_Android.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/CHANGELOG.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/src/main/java/com/pollfish/flutterpollfish/FlutterPollfishPlugin.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/src/main/java/com/pollfish/flutterpollfish/FlutterPollfishPlugin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/example/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flutter_pollfish.iml" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_pollfish.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Classes/FlutterPollfishPlugin.m" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Classes/FlutterPollfishPlugin.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/flutter_pollfish.podspec" beforeDir="false" afterPath="$PROJECT_DIR$/ios/flutter_pollfish.podspec" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/flutter_pollfish.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_pollfish.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -21,6 +37,7 @@
   <component name="CodeStyleSettingsInfer">
     <option name="done" value="true" />
   </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[/Users/fotismitropoulos/.android/avd/Pixel_2_API_22.avd]" />
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -40,6 +57,14 @@
       </GitPushTagMode>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="ProjectCodeStyleSettingsMigration">
     <option name="version" value="1" />
@@ -64,11 +89,11 @@
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="io.flutter.reload.alreadyRun" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Problems" />
+    <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RecentsManager">
@@ -78,15 +103,15 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="JUnit" factoryName="JUnit">
-      <option name="TEST_OBJECT" value="class" />
-      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+    <configuration default="true" type="Application" factoryName="Application">
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="Application" factoryName="Application">
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -180,78 +205,15 @@
     <MESSAGE value="Pollfish Flutter Plugin v3.0.1" />
     <option name="LAST_COMMIT_MESSAGE" value="Pollfish Flutter Plugin v3.0.1" />
   </component>
-  <component name="WindowStateProjectService">
-    <state x="533" y="182" key="#com.intellij.ide.util.MemberChooser" timestamp="1623068120348">
-      <screen x="0" y="25" width="1440" height="875" />
-    </state>
-    <state x="533" y="182" key="#com.intellij.ide.util.MemberChooser/0.25.1440.875@0.25.1440.875" timestamp="1623068120348" />
-    <state x="458" y="213" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1622723884437">
-      <screen x="0" y="25" width="1440" height="875" />
-    </state>
-    <state x="458" y="213" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.25.1440.875@0.25.1440.875" timestamp="1622723884437" />
-    <state x="100" y="125" width="1240" height="675" key="AVDManager" timestamp="1619174433553">
-      <screen x="0" y="25" width="1440" height="875" />
-    </state>
-    <state x="100" y="125" width="1240" height="675" key="AVDManager/0.25.1440.875@0.25.1440.875" timestamp="1619174433553" />
-    <state x="278" y="36" key="CommitChangelistDialog2" timestamp="1624433997741">
-      <screen x="0" y="25" width="1440" height="875" />
-    </state>
-    <state x="278" y="36" key="CommitChangelistDialog2/0.25.1440.875@0.25.1440.875" timestamp="1624433997741" />
-    <state x="100" y="125" width="1240" height="675" key="DiffContextDialog" timestamp="1623135330424">
-      <screen x="0" y="25" width="1440" height="875" />
-    </state>
-    <state x="100" y="125" width="1240" height="675" key="DiffContextDialog/0.25.1440.875@0.25.1440.875" timestamp="1623135330424" />
-    <state width="1398" height="277" key="GridCell.Tab.0.bottom" timestamp="1624530444248">
-      <screen x="0" y="25" width="1440" height="875" />
-    </state>
-    <state width="1398" height="277" key="GridCell.Tab.0.bottom/0.25.1440.875@0.25.1440.875" timestamp="1624530444248" />
-    <state width="1398" height="277" key="GridCell.Tab.0.center" timestamp="1624530444246">
-      <screen x="0" y="25" width="1440" height="875" />
-    </state>
-    <state width="1398" height="277" key="GridCell.Tab.0.center/0.25.1440.875@0.25.1440.875" timestamp="1624530444246" />
-    <state width="1398" height="277" key="GridCell.Tab.0.left" timestamp="1624530444246">
-      <screen x="0" y="25" width="1440" height="875" />
-    </state>
-    <state width="1398" height="277" key="GridCell.Tab.0.left/0.25.1440.875@0.25.1440.875" timestamp="1624530444246" />
-    <state width="1398" height="277" key="GridCell.Tab.0.right" timestamp="1624530444247">
-      <screen x="0" y="25" width="1440" height="875" />
-    </state>
-    <state width="1398" height="277" key="GridCell.Tab.0.right/0.25.1440.875@0.25.1440.875" timestamp="1624530444247" />
-    <state width="1398" height="264" key="GridCell.Tab.1.bottom" timestamp="1623137379148">
-      <screen x="0" y="25" width="1440" height="875" />
-    </state>
-    <state width="1398" height="264" key="GridCell.Tab.1.bottom/0.25.1440.875@0.25.1440.875" timestamp="1623137379148" />
-    <state width="1398" height="264" key="GridCell.Tab.1.center" timestamp="1623137379147">
-      <screen x="0" y="25" width="1440" height="875" />
-    </state>
-    <state width="1398" height="264" key="GridCell.Tab.1.center/0.25.1440.875@0.25.1440.875" timestamp="1623137379147" />
-    <state width="1398" height="264" key="GridCell.Tab.1.left" timestamp="1623137379147">
-      <screen x="0" y="25" width="1440" height="875" />
-    </state>
-    <state width="1398" height="264" key="GridCell.Tab.1.left/0.25.1440.875@0.25.1440.875" timestamp="1623137379147" />
-    <state width="1398" height="264" key="GridCell.Tab.1.right" timestamp="1623137379147">
-      <screen x="0" y="25" width="1440" height="875" />
-    </state>
-    <state width="1398" height="264" key="GridCell.Tab.1.right/0.25.1440.875@0.25.1440.875" timestamp="1623137379147" />
-    <state x="271" y="57" key="SettingsEditor" timestamp="1618480235835">
-      <screen x="0" y="25" width="1440" height="875" />
-    </state>
-    <state x="271" y="57" key="SettingsEditor/0.25.1440.875@0.25.1440.875" timestamp="1618480235835" />
-    <state x="320" y="199" key="Vcs.Push.Dialog.v2" timestamp="1624434031748">
-      <screen x="0" y="25" width="1440" height="875" />
-    </state>
-    <state x="320" y="199" key="Vcs.Push.Dialog.v2/0.25.1440.875@0.25.1440.875" timestamp="1624434031748" />
-    <state x="421" y="217" width="597" height="490" key="find.popup" timestamp="1622721460060">
-      <screen x="0" y="25" width="1440" height="875" />
-    </state>
-    <state x="421" y="217" width="597" height="490" key="find.popup/0.25.1440.875@0.25.1440.875" timestamp="1622721460060" />
-    <state x="437" y="310" key="git4idea.ui.GitTagDialog" timestamp="1624434023151">
-      <screen x="0" y="25" width="1440" height="875" />
-    </state>
-    <state x="437" y="310" key="git4idea.ui.GitTagDialog/0.25.1440.875@0.25.1440.875" timestamp="1624434023151" />
-    <state x="385" y="214" width="670" height="676" key="search.everywhere.popup" timestamp="1623081002660">
-      <screen x="0" y="25" width="1440" height="875" />
-    </state>
-    <state x="385" y="214" width="670" height="676" key="search.everywhere.popup/0.25.1440.875@0.25.1440.875" timestamp="1623081002660" />
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
+          <url>file://$PROJECT_DIR$/example/lib/main.dart</url>
+          <line>49</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

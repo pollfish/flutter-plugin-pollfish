@@ -9,6 +9,7 @@ import com.pollfish.Pollfish;
 import com.pollfish.builder.Params;
 import com.pollfish.builder.Platform;
 import com.pollfish.builder.Position;
+import com.pollfish.builder.RewardInfo;
 import com.pollfish.builder.UserProperties;
 import com.pollfish.callback.PollfishClosedListener;
 import com.pollfish.callback.PollfishOpenedListener;
@@ -122,7 +123,10 @@ public class FlutterPollfishPlugin implements FlutterPlugin, ActivityAware, Meth
                               final boolean rewardMode,
                               final boolean offerwallMode,
                               final String requestUUID,
-                              Map<String, Object> userProperties) {
+                              Map<String, Object> userProperties,
+                              String clickId,
+                              String signature,
+                              Map<String, Object> rewardInfo) {
 
         final Position position = Position.values()[indicatorPosition];
 
@@ -179,18 +183,53 @@ public class FlutterPollfishPlugin implements FlutterPlugin, ActivityAware, Meth
         if (userProperties != null && !userProperties.isEmpty()) {
             UserProperties.Builder userPropertiesBuilder = new UserProperties.Builder();
 
-            for (String s : userProperties.keySet()) {
-                if (userProperties.get(s) != null && userProperties.get(s) instanceof String) {
-                    userPropertiesBuilder.customAttribute(s, (String) userProperties.get(s));
+            try {
+                for (String s : userProperties.keySet()) {
+                    if (userProperties.get(s) != null && userProperties.get(s) instanceof String) {
+                        userPropertiesBuilder.customAttribute(s, (String) userProperties.get(s));
+                    }
                 }
+            } catch (Exception e) {
+                Log.e(TAG, "Error extracting userProperties: " + e);
             }
 
             paramsBuilder.userProperties(userPropertiesBuilder.build());
         }
 
+        if (rewardInfo != null && !rewardInfo.isEmpty()) {
+            RewardInfo pollfishRewardInfo = null;
+
+            try {
+                String rewardName = (String) rewardInfo.get("rewardName");
+                Double rewardConversion = (Double) rewardInfo.get("rewardConversion");
+
+                if (rewardName != null && rewardConversion != null) {
+                    pollfishRewardInfo = new RewardInfo(rewardName, rewardConversion);
+                }
+            } catch (Exception e) {
+                Log.e(TAG, "Error extracting rewardInfo: " + e);
+            }
+
+            if (pollfishRewardInfo != null) {
+                paramsBuilder.rewardInfo(pollfishRewardInfo);
+            }
+        }
+
         if (requestUUID != null) {
             if (requestUUID.trim().length() > 0) {
                 paramsBuilder.requestUUID(requestUUID);
+            }
+        }
+
+        if (clickId != null) {
+            if (clickId.trim().length() > 0) {
+                paramsBuilder.clickId(clickId);
+            }
+        }
+
+        if (signature != null) {
+            if (signature.trim().length() > 0) {
+                paramsBuilder.signature(signature);
             }
         }
 
@@ -200,8 +239,8 @@ public class FlutterPollfishPlugin implements FlutterPlugin, ActivityAware, Meth
     private void exctractPollfishParams(Activity activity, MethodCall call, Result result) {
         String apiKey = null;
 
-        if (call.argument("apiKey") != null) {
-            apiKey = call.argument("apiKey");
+        if (call.argument("androidApiKey") != null) {
+            apiKey = call.argument("androidApiKey");
         }
 
         if (apiKey == null) {
@@ -216,6 +255,9 @@ public class FlutterPollfishPlugin implements FlutterPlugin, ActivityAware, Meth
         boolean offerwallMode = false;
         String requestUUID = null;
         Map<String, Object> userProperties = null;
+        String clickId = null;
+        String signature = null;
+        Map<String, Object> rewardInfo = null;
 
         if (call.argument("indicatorPosition") != null) {
             pollfishPosition = call.argument("indicatorPosition");
@@ -245,8 +287,20 @@ public class FlutterPollfishPlugin implements FlutterPlugin, ActivityAware, Meth
             userProperties = call.argument("userProperties");
         }
 
+        if (call.argument("clickId") != null) {
+            clickId = call.argument("clickId");
+        }
+
+        if (call.argument("signature") != null) {
+            signature = call.argument("signature");
+        }
+
+        if (call.argument("rewardInfo") != null) {
+            rewardInfo = call.argument("rewardInfo");
+        }
+
         if (binding != null)
-            initPollfish(activity, apiKey, pollfishPosition, indicatorPadding, releaseMode, rewardMode, offerwallMode, requestUUID, userProperties);
+            initPollfish(activity, apiKey, pollfishPosition, indicatorPadding, releaseMode, rewardMode, offerwallMode, requestUUID, userProperties, clickId, signature, rewardInfo);
 
         result.success(null);
     }

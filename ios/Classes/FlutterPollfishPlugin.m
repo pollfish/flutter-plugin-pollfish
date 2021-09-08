@@ -38,69 +38,82 @@ FlutterMethodChannel *_channel_pollfish;
 }
 
 - (void)callInitialize:(FlutterMethodCall *) call result:(FlutterResult) result {
-    NSString *apiKey = (NSString *) call.arguments[@"apiKey"];
+    NSString *apiKey = (NSString *) call.arguments[@"iOSApiKey"];
     
-    if (apiKey == nil || [apiKey length] == 0) {
+    if (apiKey == [NSNull null] || [apiKey length] == 0) {
         result([FlutterError errorWithCode:@"no_api_key"
                                    message:@"a non-empty Pollfish API Key was not provided"
                                    details:nil]);
         return;
     }
-
-    __block int indicatorPosition = 0;
-    __block int indicatorPadding = 8;
-    __block BOOL rewardMode = false;
-    __block BOOL releaseMode = false;
-    __block BOOL offerwallMode = false;
-    __block NSString *requestUUID = nil;
-    __block NSDictionary *userProperties = nil;
+    
+    PollfishParams *params = [[PollfishParams alloc] init:apiKey];
     
     if (call.arguments[@"indicatorPosition"] != [NSNull null]) {
-        indicatorPosition = (int) [call.arguments[@"indicatorPosition"] integerValue];
+        int indicatorPosition = (int) [call.arguments[@"indicatorPosition"] integerValue];
+        [params indicatorPosition: (IndicatorPosition) indicatorPosition];
     }
 
     if (call.arguments[@"indicatorPadding"] != [NSNull null]) {
-        indicatorPadding = (int) [call.arguments[@"indicatorPadding"] integerValue];
+        int indicatorPadding = (int) [call.arguments[@"indicatorPadding"] integerValue];
+        [params indicatorPadding: indicatorPadding];
     }
 
     if (call.arguments[@"releaseMode"] != [NSNull null]) {
-        releaseMode = (BOOL) [call.arguments [@"releaseMode"] boolValue];
+        BOOL releaseMode = (BOOL) [call.arguments [@"releaseMode"] boolValue];
+        [params releaseMode: releaseMode];
     }
 
     if (call.arguments[@"rewardMode"] != [NSNull null]) {
-        rewardMode = (BOOL)[call.arguments[@"rewardMode"] boolValue];
+        BOOL rewardMode = (BOOL)[call.arguments[@"rewardMode"] boolValue];
+        [params rewardMode: rewardMode];
     }
 
-    if (call.arguments[@"request_uuid"] != [NSNull null]) {
-        requestUUID = call.arguments[@"requestuUUID"];
+    if (call.arguments[@"requestUUID"] != [NSNull null]) {
+        NSString *requestUUID = call.arguments[@"requestUUID"];
+        [params requestUUID: requestUUID];
     }
 
     if (call.arguments[@"offerwallMode"] != [NSNull null]) {
-        offerwallMode = (BOOL)[call.arguments[@"offerwallMode"] boolValue];
+        BOOL offerwallMode = (BOOL)[call.arguments[@"offerwallMode"] boolValue];
+        [params offerwallMode: offerwallMode];
     }
     
     if (call.arguments[@"userProperties"] != [NSNull null]) {
-        userProperties = (NSDictionary *) call.arguments[@"userProperties"];
+        NSDictionary *userProperties = (NSDictionary *) call.arguments[@"userProperties"];
+        UserProperties *userPropertiesBuilder = [[UserProperties alloc] init];
+            
+        [userProperties enumerateKeysAndObjectsUsingBlock:^(id key, id object, BOOL *stop) {
+            [userPropertiesBuilder customAttribute:object forKey:key];
+        }];
+        
+        [params userProperties:userPropertiesBuilder];
+    }
+    
+    if (call.arguments[@"clickId"] != [NSNull null]) {
+        NSString *clickId = call.arguments[@"clickId"];
+        [params clickId:clickId];
+    }
+    
+    if (call.arguments[@"signature"] != [NSNull null]) {
+        NSString *signature = call.arguments[@"signature"];
+        [params signature:signature];
+    }
+    
+    if (call.arguments[@"rewardInfo"] != [NSNull null]) {
+        NSDictionary *rewardInfoDict = (NSDictionary *) call.arguments[@"rewardInfo"];
+        
+        NSString *rewardName = [rewardInfoDict objectForKey:@"rewardName"];
+        double rewardConversion = [[rewardInfoDict objectForKey:@"rewardConversion"] doubleValue];
+        
+        if (rewardName != nil) {
+            RewardInfo *rewardInfo = [[RewardInfo alloc] initWithRewardName:rewardName rewardConversion:rewardConversion];
+            [params rewardInfo:rewardInfo];
+        }
     }
 
-    PollfishParams *params = [[PollfishParams alloc] init:apiKey];
-
-    [params indicatorPosition: (IndicatorPosition) indicatorPosition];
-    [params indicatorPadding: indicatorPadding];
-    [params releaseMode: releaseMode];
-    [params rewardMode: rewardMode];
-    [params offerwallMode: offerwallMode];
-    [params requestUUID: requestUUID];
     [params platform: PlatformFlutter];
     
-    UserProperties *userPropertiesBuilder = [[UserProperties alloc] init];
-        
-    [userProperties enumerateKeysAndObjectsUsingBlock:^(id key, id object, BOOL *stop) {
-        [userPropertiesBuilder customAttribute:object forKey:key];
-    }];
-    
-    [params userProperties:userPropertiesBuilder];
-
     [Pollfish initWith:params delegate: self];
 }
 
