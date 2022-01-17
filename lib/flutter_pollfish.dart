@@ -92,7 +92,7 @@ class FlutterPollfish {
   static PollfishSurveyNotAvailableListener?
       _pollfishSurveyNotAvailableListener;
 
-  Future<void> init(
+  init(
       {required String? androidApiKey,
       required String? iosApiKey,
       Position indicatorPosition = Position.topLeft,
@@ -104,9 +104,9 @@ class FlutterPollfish {
       Map<String, dynamic>? userProperties,
       String? clickId,
       String? signature,
-      RewardInfo? rewardInfo}) async {
+      RewardInfo? rewardInfo}) {
 
-    return _channel.invokeMethod("init", <String, dynamic>{
+    _channel.invokeMethod("init", <String, dynamic>{
       'androidApiKey': androidApiKey,
       'iOSApiKey': iosApiKey,
       'indicatorPosition': indicatorPosition.index,

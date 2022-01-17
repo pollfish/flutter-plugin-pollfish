@@ -125,3 +125,7 @@
 ## 4.0.2
 
 * Update with Pollfish Android SDK v6.2.0
+
+## 4.0.3
+
+* Fix issue with init in iOS devices

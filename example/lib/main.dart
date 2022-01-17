@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_pollfish/flutter_pollfish.dart';
 
@@ -41,7 +39,7 @@ class _MyAppState extends State<MyApp> {
     super.dispose();
   }
 
-  Future<void> initPollfish() async {
+  initPollfish() {
     String logText = 'Initializing Pollfish...';
 
     _showButton = false;
