@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/services.dart';
 
 // Pollfish notifications
@@ -92,7 +91,7 @@ class FlutterPollfish {
   static PollfishSurveyNotAvailableListener?
       _pollfishSurveyNotAvailableListener;
 
-  init(
+  Future<void> init(
       {required String? androidApiKey,
       required String? iosApiKey,
       Position indicatorPosition = Position.topLeft,
@@ -104,7 +103,7 @@ class FlutterPollfish {
       Map<String, dynamic>? userProperties,
       String? clickId,
       String? signature,
-      RewardInfo? rewardInfo}) {
+      RewardInfo? rewardInfo}) async {
 
     _channel.invokeMethod("init", <String, dynamic>{
       'androidApiKey': androidApiKey,
