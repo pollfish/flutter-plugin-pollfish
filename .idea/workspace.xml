@@ -12,15 +12,11 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fcf70e2d-8c48-4829-afda-3a5d8471dfbe" name="Default" comment="Pollfish Flutter Plugin v3.0.1">
+    <list default="true" id="fcf70e2d-8c48-4829-afda-3a5d8471dfbe" name="Default" comment="Pollfish Flutter Plugin v4.0.4">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/CHANGELOG.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/android/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/example/android/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/android/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/example/android/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/android/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/example/android/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/example/lib/main.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -31,7 +27,6 @@
   <component name="CodeStyleSettingsInfer">
     <option name="done" value="true" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[/Users/fotismitropoulos/.android/avd/Pixel_2_API_22.avd]" />
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -72,6 +67,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="RunOnceActivity.cidr.known.project.marker" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="ScreenshotViewer.SavePath" value="$PROJECT_DIR$/.." />
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///Users/andreasvourkos/Development/flutter_pollfish/flutter_pollfish/example/lib/main.dart" />
@@ -79,6 +75,7 @@
     <property name="android.project.structure.last.selected" value="SDK Location" />
     <property name="android.project.structure.proportion" value="0.15" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="cidr.known.project.marker" value="true" />
     <property name="dart.analysis.tool.window.force.activate" value="false" />
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="io.flutter.reload.alreadyRun" value="true" />
@@ -164,7 +161,42 @@
       <option name="project" value="LOCAL" />
       <updated>1624433997913</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Pollfish Flutter Plugin v4.0.2">
+      <created>1641996998390</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1641996998390</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Pollfish Flutter Plugin v4.0.3">
+      <created>1642413433482</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1642413433482</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Pollfish Flutter Plugin v4.0.3">
+      <created>1642413490642</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1642413490642</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Pollfish Flutter Plugin v4.0.3">
+      <created>1642414654460</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1642414654460</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Pollfish Flutter Plugin v4.0.4">
+      <created>1643380315570</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1643380315570</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TodoView">
@@ -197,17 +229,9 @@
     </ignored-roots>
     <MESSAGE value="Pollfish Flutter Plugin v3.0.0" />
     <MESSAGE value="Pollfish Flutter Plugin v3.0.1" />
-    <option name="LAST_COMMIT_MESSAGE" value="Pollfish Flutter Plugin v3.0.1" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
-          <url>file://$PROJECT_DIR$/example/lib/main.dart</url>
-          <line>49</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="Pollfish Flutter Plugin v4.0.2" />
+    <MESSAGE value="Pollfish Flutter Plugin v4.0.3" />
+    <MESSAGE value="Pollfish Flutter Plugin v4.0.4" />
+    <option name="LAST_COMMIT_MESSAGE" value="Pollfish Flutter Plugin v4.0.4" />
   </component>
 </project>

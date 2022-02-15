@@ -133,3 +133,7 @@
 ## 4.0.4
 
 * Update with Pollfish Android SDK v6.2.1
+
+## 4.0.5
+
+* Update with Pollfish Android SDK v6.2.2
