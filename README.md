@@ -37,7 +37,7 @@ Add this to your package's pubspec.yaml file:
 ```yaml
 dependencies:
   ...
-  flutter_pollfish: ^4.0.5
+  flutter_pollfish: ^4.0.6
 ```
 
 Execute the following command
