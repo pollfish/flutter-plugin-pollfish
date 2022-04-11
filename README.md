@@ -37,7 +37,7 @@ Add this to your package's pubspec.yaml file:
 ```yaml
 dependencies:
   ...
-  flutter_pollfish: ^4.0.6
+  flutter_pollfish: ^4.0.7
 ```
 
 Execute the following command
@@ -49,6 +49,16 @@ flutter packages get
 <br/>
 
 # Initialization
+
+## 1. Import `flutter_pollfish.dart` package 
+
+```dart
+import 'package:flutter_pollfish/flutter_pollfish.dart';
+```
+
+<br/>
+
+## 2. Initialize Pollfish
 
 The Pollfish plugin must be initialized with one or two api keys depending on which platforms are you targeting. You can retrieve an API key from Pollfish Dashboard when you [sign up](https://www.pollfish.com/signup/publisher) and create a new app.
 
@@ -66,7 +76,7 @@ FlutterPollfish.instance.init(androidApiKey: null, iOSApiKey: 'IOS_API_KEY'); //
 
 <br/>
 
-### Other Init params (optional)
+### 2.1 Configure Pollfish behaviour (Optional)
 
 During initialization you can pass different optional params:
 
@@ -78,29 +88,18 @@ During initialization you can pass different optional params:
 5. **`offerwallMode`**: bool - Sets Pollfish to Offerwall mode
 6. **`userProperties`**: Map<String, Object> - Send attributes that you receive from your app regarding a user, in order to receive a better fill rate and higher priced surveys. You can see a detailed list of the user attributes you can pass with their keys at the following [link](https://www.pollfish.com/docs/demographic-surveys)
 7. **`clickId`**: String - A pass throught param that will be passed back through server-to-server callback
-8. **`signature`**: String - An optional parameter used to secure the `rewardConversion` and `rewardName` parameters passed on `RewardInfo` object
+8. **`signature`**: String - An optional parameter used to secure the `rewardConversion` and `rewardName` parameters passed on `RewardInfo` object. If set you are required to calculate and set the correct signature. Otherwise you will not receive Pollfish Surveys.
 9. **`rewardInfo`**: RewardInfo - An object holding information regarding the survey completion reward
 
-<br/>
+Example of basic Pollfish initialization
 
-#### Debug Vs Release Mode
+```dart
+FlutterPollfish.instance.init(
+  androidApiKey: 'ANDROID_API_KEY',
+  iOSApiKey: 'IOS_API_KEY');
+```
 
-You can use Pollfish either in Debug or in Release mode. 
-  
-* **Debug mode** is used to show to the developer how Pollfish will be shown through an app (useful during development and testing).
-* **Release mode** is the mode to be used for a released app (start receiving paid surveys).
-
-> **Note:** In Android debugMode parameter is ignored. Your app turns into debug mode once it is signed with a debug key. If you sign your app with a release key it automatically turns into Release mode.
-
-> **Note:** Be careful to turn the `releaseMode` parameter to `true` when you release your app in a relevant app store!!
-
-<br/>
-
-### Reward Mode 
-
-Reward mode false during initialization enables controlling the behavior of Pollfish in an app from Pollfish panel. Enabling reward mode ignores Pollfish behavior from Pollfish panel. It always skips showing Pollfish indicator (small button) and always force open Pollfish view to app users. This method is usually used when app developers want to incentivize first somehow their users before completing surveys to increase completion rates.
-
-<br/>
+Example of Pollfish configuration using the available options
 
 ```dart
 FlutterPollfish.instance.init(
@@ -121,6 +120,23 @@ FlutterPollfish.instance.init(
   clickId: 'CLICK_ID',
   rewardInfo: RewardInfo('Point', 1.3));
 ```
+
+<br/>
+
+> ### Debug vs Release Mode
+>
+> You can use Pollfish either in Debug or in Release mode. 
+>  
+> * **Debug mode** is used to show to the developer how Pollfish will be shown through an app (useful during development and testing).
+> * **Release mode** is the mode to be used for a released app (start receiving paid surveys).
+> 
+> **Note:** Be careful to set the `releaseMode` parameter to `true` when you release your app in a relevant app store!!
+
+<br/>
+
+> ### Reward Mode 
+> 
+> Setting the `rewardMode` to `false` during initialization enables controlling the behavior of Pollfish in an app from the Pollfish panel. Enabling reward mode ignores Pollfish behavior from Pollfish panel. It always skips showing Pollfish indicator (small button) and always force open Pollfish view to app users. This method is usually used when app developers want to somehow incentivize their users before completing surveys to increase completion rates.
 
 <br/>
 

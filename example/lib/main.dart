@@ -5,16 +5,11 @@ import 'package:flutter_pollfish/flutter_pollfish.dart';
 
 void main() => runApp(MyApp());
 
-// Pollfish initialization options
-
+// Pollfish basic configuration options
 const String androidApiKey = 'ANDROID_API_KEY';
 const String iOSApiKey = 'IOS_API_KEY';
 const bool releaseMode = false;
-const int indicatorPadding = 20;
 const Position indicatorPosition = Position.middleRight;
-const String? requestUUID = null;
-const userProperties = {'gender': '1', 'education': '1'};
-const clickId = null;
 
 class MyApp extends StatefulWidget {
   @override
@@ -47,17 +42,16 @@ class _MyAppState extends State<MyApp> {
     _showButton = false;
     _completedSurvey = false;
 
+    final offerwallMode = _currentIndex == 2;
+    final rewardMode = (_currentIndex == 1 || _currentIndex == 2);
+
     FlutterPollfish.instance.init(
         androidApiKey: androidApiKey,
         iosApiKey: iOSApiKey,
         indicatorPosition: indicatorPosition,
-        indicatorPadding: indicatorPadding,
-        rewardMode: (_currentIndex == 1 || _currentIndex == 2),
+        rewardMode: rewardMode,
         releaseMode: releaseMode,
-        offerwallMode: (_currentIndex == 2) ? true : false,
-        requestUUID: requestUUID,
-        userProperties: userProperties,
-        clickId: clickId);
+        offerwallMode: offerwallMode);
 
     FlutterPollfish.instance
         .setPollfishSurveyReceivedListener(onPollfishSurveyReceived);
@@ -97,7 +91,6 @@ class _MyAppState extends State<MyApp> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
-                        //Padding between these please
                         Text('$_logText\n'),
                         (((_currentIndex == 1) || (_currentIndex == 2)) &&
                                 _showButton &&
@@ -112,8 +105,6 @@ class _MyAppState extends State<MyApp> {
                                         : 'Offerwall - Take Surveys',
                                     style: new TextStyle(
                                         color: Colors.white, fontSize: 16.0)),
-                                // You can add a Icon instead of text also, like below.
-
                                 shape: new RoundedRectangleBorder(),
                                 elevation: 2.0,
                                 fillColor: Colors.blue,
