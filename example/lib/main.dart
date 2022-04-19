@@ -9,7 +9,6 @@ void main() => runApp(MyApp());
 const String androidApiKey = 'ANDROID_API_KEY';
 const String iOSApiKey = 'IOS_API_KEY';
 const bool releaseMode = false;
-const Position indicatorPosition = Position.middleRight;
 
 class MyApp extends StatefulWidget {
   @override
@@ -43,13 +42,11 @@ class _MyAppState extends State<MyApp> {
     _completedSurvey = false;
 
     final offerwallMode = _currentIndex == 2;
-    final rewardMode = (_currentIndex == 1 || _currentIndex == 2);
 
     FlutterPollfish.instance.init(
         androidApiKey: androidApiKey,
         iosApiKey: iOSApiKey,
-        indicatorPosition: indicatorPosition,
-        rewardMode: rewardMode,
+        rewardMode: true,
         releaseMode: releaseMode,
         offerwallMode: offerwallMode);
 
@@ -92,15 +89,13 @@ class _MyAppState extends State<MyApp> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
                         Text('$_logText\n'),
-                        (((_currentIndex == 1) || (_currentIndex == 2)) &&
-                                _showButton &&
-                                !_completedSurvey)
+                        (_showButton && !_completedSurvey)
                             ? new RawMaterialButton(
                                 onPressed: () {
                                   FlutterPollfish.instance.show();
                                 },
                                 child: new Text(
-                                    (_currentIndex == 1)
+                                    (_currentIndex == 0)
                                         ? 'Complete a Survey and Earn $_cpa Credits'
                                         : 'Offerwall - Take Surveys',
                                     style: new TextStyle(
@@ -123,10 +118,6 @@ class _MyAppState extends State<MyApp> {
               currentIndex: _currentIndex,
               items: [
                 new BottomNavigationBarItem(
-                  icon: Icon(Icons.check),
-                  label: 'Standard',
-                ),
-                new BottomNavigationBarItem(
                   icon: Icon(Icons.card_giftcard),
                   label: 'Rewarded Survey',
                 ),
@@ -145,8 +136,6 @@ class _MyAppState extends State<MyApp> {
 
   Text findCurrentTitle(int currentIndex) {
     if (_currentIndex == 0) {
-      return const Text('Pollfish Standard Integration');
-    } else if (_currentIndex == 1) {
       return const Text('Pollfish Rewarded Integration');
     } else {
       return const Text('Pollfish Offerwall Integration');

@@ -96,7 +96,8 @@ Example of basic Pollfish initialization
 ```dart
 FlutterPollfish.instance.init(
   androidApiKey: 'ANDROID_API_KEY',
-  iOSApiKey: 'IOS_API_KEY');
+  iOSApiKey: 'IOS_API_KEY',
+  rewardMode: true);
 ```
 
 Example of Pollfish configuration using the available options
@@ -107,7 +108,7 @@ FlutterPollfish.instance.init(
   iOSApiKey: 'IOS_API_KEY',
   indicatorPosition: Position.middleRight,
   indicatorPadding: 40,
-  rewardMode: false,
+  rewardMode: true,
   releaseMode: true,
   requestUUID: 'REQUEST_UUID',
   offerwallMode: false,
@@ -135,7 +136,7 @@ FlutterPollfish.instance.init(
 <br/>
 
 > ### Reward Mode 
-> 
+>
 > Setting the `rewardMode` to `false` during initialization enables controlling the behavior of Pollfish in an app from the Pollfish panel. Enabling reward mode ignores Pollfish behavior from Pollfish panel. It always skips showing Pollfish indicator (small button) and always force open Pollfish view to app users. This method is usually used when app developers want to somehow incentivize their users before completing surveys to increase completion rates.
 
 <br/>
