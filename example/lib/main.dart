@@ -43,6 +43,12 @@ class _MyAppState extends State<MyApp> {
 
     final offerwallMode = _currentIndex == 2;
 
+    // Note: If you are targeting iOS 14+ devices please keep in mind that Pollfish surveys can work 
+		// with or without the IDFA permission on iOS 14+. If no permission is granted in the ATT popup, 
+		// the SDK will serve non personalized surveys to the user. In that scenario the conversion is expected to be lower. 
+		// Offerwall integrations perform better compared to single survey integrations when no IDFA permission is given
+		// We recommend requesting IDFA usage permission prior to Pollfish initialization.
+
     FlutterPollfish.instance.init(
         androidApiKey: androidApiKey,
         iosApiKey: iOSApiKey,
