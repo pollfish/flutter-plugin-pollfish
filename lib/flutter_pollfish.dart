@@ -102,9 +102,9 @@ class FlutterPollfish {
       String? requestUUID,
       Map<String, dynamic>? userProperties,
       String? clickId,
+      String? userId,
       String? signature,
       RewardInfo? rewardInfo}) async {
-
     _channel.invokeMethod("init", <String, dynamic>{
       'androidApiKey': androidApiKey,
       'iOSApiKey': iosApiKey,
@@ -116,6 +116,7 @@ class FlutterPollfish {
       'requestUUID': requestUUID,
       'userProperties': userProperties,
       'clickId': clickId,
+      'userId': userId,
       'signature': signature,
       'rewardInfo': rewardInfo?.toMap()
     });

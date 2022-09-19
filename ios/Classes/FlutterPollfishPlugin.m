@@ -94,6 +94,11 @@ FlutterMethodChannel *_channel_pollfish;
         NSString *clickId = call.arguments[@"clickId"];
         [params clickId:clickId];
     }
+
+    if (call.arguments[@"userId"] != [NSNull null]) {
+        NSString *userId = call.arguments[@"userId"];
+        [params userId:userId];
+    }
     
     if (call.arguments[@"signature"] != [NSNull null]) {
         NSString *signature = call.arguments[@"signature"];

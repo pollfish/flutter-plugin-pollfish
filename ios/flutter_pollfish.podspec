@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name             = 'flutter_pollfish'
-  s.version          = '4.0.8'
+  s.version          = '4.1.0'
   s.summary          = 'A Flutter plugin for rendering Pollfish surveys within an app'
   s.description      = <<-DESC
 A  Flutter plugin for rendering Pollfish surveys within an app
@@ -13,8 +13,8 @@ A  Flutter plugin for rendering Pollfish surveys within an app
   s.source_files = 'Classes/**/*'
   s.public_header_files = 'Classes/**/*.h'
   s.dependency 'Flutter'
-  s.dependency 'Pollfish', '~> 6.2.7'
-  s.ios.deployment_target = '9.0'
+  s.dependency 'Pollfish', '~> 6.3.0'
+  s.ios.deployment_target = '11.0'
   s.static_framework = true
 end
 

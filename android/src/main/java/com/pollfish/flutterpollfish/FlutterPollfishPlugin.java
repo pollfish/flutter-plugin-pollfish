@@ -125,6 +125,7 @@ public class FlutterPollfishPlugin implements FlutterPlugin, ActivityAware, Meth
                               final String requestUUID,
                               Map<String, Object> userProperties,
                               String clickId,
+                              String userId,
                               String signature,
                               Map<String, Object> rewardInfo) {
 
@@ -227,6 +228,12 @@ public class FlutterPollfishPlugin implements FlutterPlugin, ActivityAware, Meth
             }
         }
 
+        if (userId != null) {
+            if (userId.trim().length() > 0) {
+                paramsBuilder.userId(userId);
+            }
+        }
+
         if (signature != null) {
             if (signature.trim().length() > 0) {
                 paramsBuilder.signature(signature);
@@ -256,6 +263,7 @@ public class FlutterPollfishPlugin implements FlutterPlugin, ActivityAware, Meth
         String requestUUID = null;
         Map<String, Object> userProperties = null;
         String clickId = null;
+        String userId = null;
         String signature = null;
         Map<String, Object> rewardInfo = null;
 
@@ -291,6 +299,10 @@ public class FlutterPollfishPlugin implements FlutterPlugin, ActivityAware, Meth
             clickId = call.argument("clickId");
         }
 
+        if (call.argument("userId") != null) {
+            userId = call.argument("userId");
+        }
+
         if (call.argument("signature") != null) {
             signature = call.argument("signature");
         }
@@ -300,7 +312,7 @@ public class FlutterPollfishPlugin implements FlutterPlugin, ActivityAware, Meth
         }
 
         if (binding != null)
-            initPollfish(activity, apiKey, pollfishPosition, indicatorPadding, releaseMode, rewardMode, offerwallMode, requestUUID, userProperties, clickId, signature, rewardInfo);
+            initPollfish(activity, apiKey, pollfishPosition, indicatorPadding, releaseMode, rewardMode, offerwallMode, requestUUID, userProperties, clickId, userId, signature, rewardInfo);
 
         result.success(null);
     }
