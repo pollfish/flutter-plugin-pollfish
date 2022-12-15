@@ -114,7 +114,7 @@ Add this to your package's pubspec.yaml file:
 ```yaml
 dependencies:
   ...
-  flutter_pollfish: ^4.1.1
+  flutter_pollfish: ^4.1.2
 ```
 
 Execute the following command

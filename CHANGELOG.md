@@ -157,3 +157,7 @@
 ## 4.1.1
 
 * Update with Pollfish Android SDK v6.3.1 and Pollfish iOS SDK v6.3.1
+
+## 4.1.2
+
+* Update with Pollfish Android SDK v6.3.2
