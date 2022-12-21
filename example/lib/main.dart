@@ -41,7 +41,7 @@ class _MyAppState extends State<MyApp> {
     _showButton = false;
     _completedSurvey = false;
 
-    final offerwallMode = _currentIndex == 2;
+    final offerwallMode = _currentIndex == 1;
 
     // Note: If you are targeting iOS 14+ devices please keep in mind that Pollfish surveys can work 
 		// with or without the IDFA permission on iOS 14+. If no permission is granted in the ATT popup, 
