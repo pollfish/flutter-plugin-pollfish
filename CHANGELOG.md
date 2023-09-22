@@ -173,3 +173,7 @@
 ## 4.1.5
 
 * Update with Pollfish iOS SDK v6.4.1
+
+## 4.1.6
+
+* Update with Pollfish iOS SDK v6.4.2

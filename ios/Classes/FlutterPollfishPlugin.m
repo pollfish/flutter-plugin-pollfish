@@ -42,7 +42,7 @@ FlutterMethodChannel *_channel_pollfish;
     
     if (apiKey == [NSNull null] || [apiKey length] == 0) {
         result([FlutterError errorWithCode:@"no_api_key"
-                                   message:@"a non-empty Pollfish API Key was not provided"
+                                   message:@"Pollfish API Key is not provided"
                                    details:nil]);
         return;
     }
