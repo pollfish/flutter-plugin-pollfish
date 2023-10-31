@@ -177,3 +177,9 @@
 ## 4.1.6
 
 * Update with Pollfish iOS SDK v6.4.2
+
+## 4.2.0
+
+* Update with Pollfish Android SDK v6.5.0
+* Update with Pollfish iOS SDK v6.5.0
+* Adding support for placement id initialization option

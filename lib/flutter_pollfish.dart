@@ -104,6 +104,7 @@ class FlutterPollfish {
       String? clickId,
       String? userId,
       String? signature,
+      String? placementId,
       RewardInfo? rewardInfo}) async {
     _channel.invokeMethod("init", <String, dynamic>{
       'androidApiKey': androidApiKey,
@@ -118,6 +119,7 @@ class FlutterPollfish {
       'clickId': clickId,
       'userId': userId,
       'signature': signature,
+      'placementId': placementId,
       'rewardInfo': rewardInfo?.toMap()
     });
   }

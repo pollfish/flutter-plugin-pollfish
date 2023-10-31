@@ -104,6 +104,11 @@ FlutterMethodChannel *_channel_pollfish;
         NSString *signature = call.arguments[@"signature"];
         [params signature:signature];
     }
+
+    if (call.arguments[@"placementId"] != [NSNull null]) {
+        NSString *placementId = call.arguments[@"placementId"];
+        [params placementId:placementId];
+    }
     
     if (call.arguments[@"rewardInfo"] != [NSNull null]) {
         NSDictionary *rewardInfoDict = (NSDictionary *) call.arguments[@"rewardInfo"];

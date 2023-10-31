@@ -127,6 +127,7 @@ public class FlutterPollfishPlugin implements FlutterPlugin, ActivityAware, Meth
                               String clickId,
                               String userId,
                               String signature,
+                              String placementId,
                               Map<String, Object> rewardInfo) {
 
         final Position position = Position.values()[indicatorPosition];
@@ -240,6 +241,10 @@ public class FlutterPollfishPlugin implements FlutterPlugin, ActivityAware, Meth
             }
         }
 
+        if (placementId != null && placementId.trim().length() > 0) {
+            paramsBuilder.placementId(placementId);
+        }
+
         Pollfish.initWith(activity, paramsBuilder.build());
     }
 
@@ -265,6 +270,7 @@ public class FlutterPollfishPlugin implements FlutterPlugin, ActivityAware, Meth
         String clickId = null;
         String userId = null;
         String signature = null;
+        String placementId = null;
         Map<String, Object> rewardInfo = null;
 
         if (call.argument("indicatorPosition") != null) {
@@ -307,12 +313,16 @@ public class FlutterPollfishPlugin implements FlutterPlugin, ActivityAware, Meth
             signature = call.argument("signature");
         }
 
+        if (call.argument("placementId") != null) {
+            placementId = call.argument("placementId");
+        }
+
         if (call.argument("rewardInfo") != null) {
             rewardInfo = call.argument("rewardInfo");
         }
 
         if (binding != null)
-            initPollfish(activity, apiKey, pollfishPosition, indicatorPadding, releaseMode, rewardMode, offerwallMode, requestUUID, userProperties, clickId, userId, signature, rewardInfo);
+            initPollfish(activity, apiKey, pollfishPosition, indicatorPadding, releaseMode, rewardMode, offerwallMode, requestUUID, userProperties, clickId, userId, signature, placementId, rewardInfo);
 
         result.success(null);
     }
